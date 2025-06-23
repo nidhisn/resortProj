@@ -1,0 +1,91 @@
+.hamburgerWrapper {
+  position: fixed;
+  top: 50%;
+  left: 26px;
+  z-index: 1100;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -850px;
+  width: 850px;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* NEW: Padding only for links container */
+.linkContainer {
+  padding: 7rem 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.link {
+  font-family: "Playfair Display", serif;
+  color: #1c5666;
+  text-decoration: none;
+  font-size: 3rem; /* ← Increased for better visibility */
+  font-weight: 600; /* Optional: makes the text bolder */
+  margin: 1.5rem 0; /* Optional: more spacing between links */
+  transition: color 0.2s ease;
+  line-height: 70px;
+}
+
+.link:hover {
+  color: #f0a500;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.closeButton {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1101;
+  padding-left: 1rem;
+  color: #1c5666;
+}
+
+.closeText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+}
+
+.subLink {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 0.1rem;
+  opacity: 0.8;
+  line-height: 1rem;
+}
+.linkContainerSecondary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

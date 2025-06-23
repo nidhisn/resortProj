@@ -1,17 +1,5 @@
-* {
-  font-family: "Nunito Sans", sans-serif;
-}
-
-/* Reset body & html default margins and paddings */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.app {
-  background-image: url("images/background1.jpg");
+.home {
+  background-image: url("../../images/background1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +10,7 @@ body {
 }
 
 /* Optional: overlay to darken background and improve text readability */
-.app::before {
+.home::before {
   content: "";
   position: absolute;
   top: 0;

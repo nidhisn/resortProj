@@ -1,0 +1,30 @@
+.section {
+  padding: 4rem 2rem;
+  background: #caf0f8;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #0077b6;
+  text-align: center;
+}
+
+.mapWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.map {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #03045e;
+}
