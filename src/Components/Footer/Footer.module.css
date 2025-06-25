@@ -1,30 +1,137 @@
 .footer {
-  background-color: #0077b6;
-  padding: 2rem;
-  text-align: center;
-  color: white;
+  background-color: #f5f9f7;
+  color: #184c48;
+  padding: 3rem 2rem;
+  font-family: "Georgia", serif;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.column {
+  flex: 1 1 30%;
+  min-width: 250px;
+}
+
+.address {
+  line-height: 1.5;
   font-size: 0.95rem;
 }
 
-.footerLinks {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+.phone {
+  font-size: 1.2rem;
+  margin: 1rem 0;
 }
 
-.link {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.link:hover {
-  opacity: 0.8;
-}
-
-.copy {
+h4 {
   font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: #5d737e;
+  margin-top: 1.5rem;
+}
+
+.socials span {
+  margin-right: 1.5rem;
+  color: #5d737e;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.themeToggle {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.day,
+.night {
+  background: transparent;
+  border: 1px solid #5d737e;
+  color: #184c48;
+  padding: 0.5rem 1.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.night {
+  background-color: #184c48;
+  color: #f5f9f7;
+}
+
+.day:hover,
+.night:hover {
   opacity: 0.8;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #bbb;
+  color: #184c48;
+  margin-top: 1rem;
+}
+
+.terms {
+  font-size: 0.8rem;
+  color: #5d737e;
+  margin: 0.5rem 0 1rem;
+}
+
+.terms a {
+  color: #5d737e;
+  text-decoration: underline;
+}
+
+.subscribe {
+  padding: 0.7rem 2rem;
+  background-color: #184c48;
+  border: none;
+  color: #f5f9f7;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.subscribe:hover {
+  background-color: #0f2e2b;
+}
+
+.bottom {
+  border-top: 1px solid #cdd3d1;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+
+.links a {
+  color: #5d737e;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-size: 0.8rem;
+  color: #5d737e;
+}
+
+.legal a {
+  color: #5d737e;
+  text-decoration: underline;
 }

@@ -9,6 +9,7 @@ const Menu = () => {
   return (
     <>
       <div className={styles.hamburgerWrapper}>
+        <div className={styles.MenuText}>MENU</div>
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
