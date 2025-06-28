@@ -42,10 +42,10 @@
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
+  font-family: "Playfair Display", serif;
 }
 
 /* Show overlay text only when hovered */

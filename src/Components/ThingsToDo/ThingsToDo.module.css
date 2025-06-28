@@ -1,50 +1,120 @@
-.section {
-  padding: 4rem 2rem;
-  background: #e0f7ff;
+.container {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Background image */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../images/thingtodoBG2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
+}
+
+.main {
+  margin-left: 20%;
   text-align: center;
+  padding: 2rem;
+  color: white;
+  max-width: 800px;
 }
 
 .heading {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #0077b6;
+  font-size: 5.5rem;
+  font-family: "Playfair Display", serif;
+  color: #1c5666;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
+  font-weight: 600;
 }
 
-.grid {
+.subheading {
+  font-size: 2.5rem;
+  font-weight: 300;
+  display: block;
+  margin-top: 1.5rem;
+  color: #1c5666;
+  font-family: "Playfair Display", serif;
+}
+
+/* Zig-zag layout */
+.activity {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4rem;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.card {
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 320px;
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.text {
+  max-width: 500px;
+  font-size: 1.1rem;
+  line-height: 1.6;
   padding: 1rem;
-  text-align: left;
-  transition: transform 0.2s ease-in-out;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 12px;
+.text h2 {
+  font-size: 2rem;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
-.cardTitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #023e8a;
-  margin-bottom: 0.5rem;
+/* Decorative SVG */
+.threadWrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.cardText {
-  font-size: 1rem;
-  color: #333;
+/* Responsive */
+@media (max-width: 768px) {
+  .activity,
+  .reverse {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .image {
+    width: 90%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
 }
