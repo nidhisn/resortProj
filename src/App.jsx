@@ -6,6 +6,7 @@ import ExploreIsland from "./Components/ExploreIsland/ExploreIsland";
 import Footer from "./Components/Footer/Footer";
 import Menu from "./Components/Menu/Menu";
 import Resort from "./Components/Resort/Resort";
+import Home from "./Components/Home/Home";
 import "./App.css";
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<HeroSection />} />
+            <Route path="/" element={<Home />} />
             <Route path="/resort" element={<Resort />} />
             <Route path="/thingstodo" element={<ThingsToDo />} />
             <Route path="/exploretheisland" element={<ExploreIsland />} />
