@@ -1,9 +1,9 @@
 {
+  "homepage": "https://nidhisn.github.io/resortProj",
   "name": "resortproj",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://nidhisn.github.io/resortProj",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
