@@ -25,13 +25,13 @@ const Menu = () => {
         </div>
 
         <div className={styles.linkContainer}>
-          <a href="/" className={styles.link}>
+          <a href="/resort" className={styles.link}>
             The Resort
           </a>
-          <a href="/about" className={styles.link}>
+          <a href="/thingstodo" className={styles.link}>
             Things to Do
           </a>
-          <a href="/contact" className={styles.link}>
+          <a href="/exploretheisland" className={styles.link}>
             Explore the Island
           </a>
           <div className={styles.linkContainerSecondary}>
