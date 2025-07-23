@@ -1,0 +1,133 @@
+.bookingContainer {
+  font-family: "Segoe UI", sans-serif;
+  color: #033a3a;
+  background-color: white;
+}
+
+.header img {
+  width: 100%;
+  height: auto;
+}
+
+.contentWrapper {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+
+  padding-right: 30px;
+}
+
+.title {
+  flex: 1;
+  width: 50%;
+}
+.headerSection h1 {
+  font-family: "Playfair Display", serif;
+  color: #1c5666;
+  text-decoration: none;
+  font-size: 65px;
+  font-weight: 400;
+  margin: 1.5rem 0;
+  transition: color 0.2s ease;
+  line-height: 65px;
+}
+
+.noticeBox {
+  background-color: #f4f4f4;
+  padding: 1rem;
+
+  width: 50%;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+.noticeBox p a {
+  color: #1c5666;
+}
+
+.warningText {
+  color: #e54545;
+  font-weight: 500;
+}
+
+.formSection {
+  margin-top: 2rem;
+}
+
+h3 {
+  color: #f5625d;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dateRow,
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+input,
+select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.infoText {
+  padding-bottom: 10px;
+}
+
+.infoText a {
+  margin: 1rem;
+  font-size: 1rem;
+  color: #1c5666;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.subText {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+.bookNow {
+  background-color: #1c5666;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  width: 30%;
+  transition: background 0.3s ease;
+}
+
+.bookNow:disabled {
+  background-color: #1c5666;
+}
+
+.bookNow:hover:not(:disabled) {
+  background-color: #247e85;
+}
+
+:focus-visible {
+  outline: none !important;
+}

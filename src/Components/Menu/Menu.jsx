@@ -1,51 +1,87 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Squash as Hamburger } from "hamburger-react";
 import styles from "./Menu.module.css";
-import closeIcon from "../../images/close.png";
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
+  const location = useLocation();
+  const isBookingPage = location.pathname === "/booking";
 
   return (
     <>
-      <div className={styles.hamburgerWrapper}>
-        <div className={styles.MenuText}>MENU</div>
+      <div
+        className={`${styles.hamburgerWrapper} ${
+          isBookingPage ? styles.bookingColor : ""
+        }`}
+      >
+        <div
+          className={`${styles.MenuText} ${
+            isBookingPage ? styles.bookingText : ""
+          } ${isOpen ? styles.hidden : ""}`}
+        >
+          MENU
+        </div>
+
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
-          color={isOpen ? "#1c5666" : "#FFFFFF"}
+          color={isBookingPage || isOpen ? "#1c5666" : "#FFFFFF"} // ✅ fixed logic
         />
       </div>
 
       {/* Sidebar Menu */}
-      <div className={styles.sidebar + (isOpen ? ` ${styles.open}` : "")}>
+      <div
+        className={`${styles.sidebar} ${isOpen ? styles.open : ""} ${
+          isBookingPage ? styles.bookingSidebar : ""
+        }`}
+      >
         {/* CLOSE BUTTON */}
         <div className={styles.closeButton} onClick={() => setOpen(false)}>
           <span className={styles.closeText}>CLOSE</span>
         </div>
-
         <div className={styles.linkContainer}>
-          <a href="/resort" className={styles.link}>
+          <Link
+            to="/resort"
+            className={styles.link}
+            onClick={() => setOpen(false)}
+          >
             The Resort
-          </a>
-          <a href="/thingstodo" className={styles.link}>
+          </Link>
+          <Link
+            to="/thingstodo"
+            className={styles.link}
+            onClick={() => setOpen(false)}
+          >
             Things to Do
-          </a>
-          <a href="/exploretheisland" className={styles.link}>
+          </Link>
+          <Link
+            to="/exploretheisland"
+            className={styles.link}
+            onClick={() => setOpen(false)}
+          >
             Explore the Island
-          </a>
+          </Link>
           <div className={styles.linkContainerSecondary}>
-            <a href="/faq" className={`${styles.link} ${styles.subLink}`}>
+            <Link
+              to="/faq"
+              className={`${styles.link} ${styles.subLink}`}
+              onClick={() => setOpen(false)}
+            >
               FAQ
-            </a>
-            <a href="/book" className={`${styles.link} ${styles.subLink}`}>
+            </Link>
+            <Link
+              to="/booking"
+              className={`${styles.link} ${styles.subLink}`}
+              onClick={() => setOpen(false)}
+            >
               CONTACT & BOOKING
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Overlay to darken background when menu is open */}
+      {/* Overlay */}
       {isOpen && (
         <div className={styles.overlay} onClick={() => setOpen(false)}></div>
       )}

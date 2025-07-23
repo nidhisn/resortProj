@@ -16,7 +16,7 @@ export default function HeroSection() {
     { src: resortImg, alt: "The Resort", onClick: handleResortClick },
     {
       src: scubaImg,
-      alt: "Activities",
+      alt: "Things to do",
       onClick: () => navigate("/thingstodo"),
     },
     {

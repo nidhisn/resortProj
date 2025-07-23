@@ -7,6 +7,7 @@ import Footer from "./Components/Footer/Footer";
 import Menu from "./Components/Menu/Menu";
 import Resort from "./Components/Resort/Resort";
 import Home from "./Components/Home/Home";
+import Book from "./Components/Book/Book";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/resort" element={<Resort />} />
             <Route path="/thingstodo" element={<ThingsToDo />} />
             <Route path="/exploretheisland" element={<ExploreIsland />} />
+            <Route path="/booking" element={<Book />} />
           </Routes>
         </main>
         <Footer />

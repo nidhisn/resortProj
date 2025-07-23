@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./logo.module.css";
+import logo from "../../images/logoWhite.png";
 
 const Logo = () => {
   return (
     <div className={styles.logoContainer}>
-      <h3>Sand Bank</h3>
-      <h5>Resort Lakshadweep</h5>
+      <img src={logo} alt="Resort logo" className={styles.logoImage} />
     </div>
   );
 };

@@ -17,6 +17,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.3rem;
   font-weight: bold;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 .sidebar {
@@ -102,4 +103,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.bookingColor {
+  /* Change this if needed */
+  color: #1c5666;
+}
+
+.bookingText {
+  color: #1c5666;
+}
+
+.bookingSidebar {
+  background-color: #f6f6f6; /* light background for booking page */
+}
+.hidden {
+  display: none;
 }
