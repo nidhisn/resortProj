@@ -41,12 +41,15 @@
   bottom: 20%;
   left: 30%;
   color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
+
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
   font-family: "Playfair Display", serif;
+
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 /* Show overlay text only when hovered */

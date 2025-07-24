@@ -1,38 +1,43 @@
 import React, { useState } from "react";
 import styles from "./Resort.module.css";
+import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import img1 from "../../images/TheResort.jpg";
-import img2 from "../../images/scuba.jpg";
-import img3 from "../../images/island.jpg";
+import resort1 from "../../images/resort1.png";
+import resort2 from "../../images/resort2.png";
+import resort3 from "../../images/resort3.png";
+import resort4 from "../../images/resort4.png";
+import resort5 from "../../images/resort5.png";
+import resort6 from "../../images/resort6.png";
 import BedIcon from "@mui/icons-material/Bed";
 import WifiIcon from "@mui/icons-material/Wifi";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import ShowerIcon from "@mui/icons-material/Shower";
 import WavesIcon from "@mui/icons-material/Waves";
+import TvIcon from "@mui/icons-material/Tv";
 
-const galleryImages = [img2, img3];
+const galleryImages = [resort1, resort2, resort3, resort4, resort5, resort6];
 
 const faqs = [
+  // Resort-related questions
   {
-    question: "When is the check-in time?",
-    answer: "Check-in is after 3 PM.",
-  },
-  {
-    question: "What time is check-out?",
-    answer: "Check-out is before 11 AM.",
-  },
-  {
-    question: "Is late check-out available?",
+    question: "What are the check-in and check-out hours at the resort?",
     answer:
-      "Late check-out is available upon request and subject to availability.",
+      "Check-in time is at 11:00 AM, and check-out time is at 9:00 AM. Early check-in and late check-out are available free of charge, subject to availability.",
+  },
+  {
+    question: "Are there beach-view rooms available?",
+    answer:
+      "No, the resort does not currently offer beach-view rooms. However, there are 5 non-beach-view rooms available.",
+  },
+  {
+    question: "Are meals included in the stay?",
+    answer:
+      "Yes, breakfast, lunch, and dinner are included in your stay at the resort.",
   },
   {
     question: "Are pets allowed in the rooms?",
     answer: "Unfortunately, pets are not allowed.",
-  },
-  {
-    question: "Is breakfast included?",
-    answer: "Yes, complimentary breakfast is included with your stay.",
   },
 ];
 
@@ -63,11 +68,6 @@ const Resort = () => {
               <strong>Guests</strong>
               <br />
               Max 2
-            </p>
-            <p>
-              <strong>Price</strong>
-              <br />
-              From 2K Rupees
             </p>
           </div>
         </div>
@@ -102,41 +102,51 @@ const Resort = () => {
                 <WifiIcon fontSize="large" className={styles.icon} />
                 <p>Wifi available</p>
               </div>
+              <div className={styles.amenityItem}>
+                <TvIcon fontSize="large" className={styles.icon} />
+                <p>Smart TV</p>
+              </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Link to="/booking" className={styles.bookButton}>
+                BOOK MY STAY
+              </Link>
             </div>
           </div>
         </p>
       </section>
 
       {/* Gallery Section */}
-      <section className={styles.gallery}>
-        {galleryImages.map((img, index) => (
-          <img key={index} src={img} alt={`Gallery ${index + 1}`} />
-        ))}
-      </section>
-      {/* FAQs */}
-      <section className={styles.faqSection}>
-        <h3>Helpful Information</h3>
-        <div className={styles.faqList}>
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`${styles.faqItem} ${
-                openFAQ === index ? styles.open : ""
-              }`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <div className={styles.faqItemHeader}>
-                <div className={styles.question}>{faq.question}</div>
-                <div className={styles.arrow}>
-                  {openFAQ === index ? <FaChevronUp /> : <FaChevronDown />}
-                </div>
-              </div>
-              {openFAQ === index && (
-                <div className={styles.answer}>{faq.answer}</div>
-              )}
-            </div>
+      <section className={styles.galleryWrapper}>
+        <div className={styles.gallery}>
+          {[...galleryImages, ...galleryImages].map((img, index) => (
+            <img key={index} src={img} alt={`Gallery ${index + 1}`} />
           ))}
         </div>
+      </section>
+
+      <div className={styles.pageTitle}>
+        <h1>Frequently Asked Questions</h1>
+      </div>
+      {/* FAQs */}
+      {/* FAQ Section */}
+      <section className={styles.faqSection}>
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className={`${styles.faqItem} ${
+              openFAQ === index ? styles.open : ""
+            }`}
+            onClick={() => toggleFAQ(index)}
+          >
+            <div className={styles.faqItemHeader}>
+              <div className={styles.faqLine}></div>
+              <h2 className={styles.question}>{faq.question}</h2>
+            </div>
+
+            {openFAQ === index && <p className={styles.answer}>{faq.answer}</p>}
+          </div>
+        ))}
       </section>
     </div>
   );

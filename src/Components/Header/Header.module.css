@@ -34,3 +34,17 @@
 .bookButton:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+.bookButtonGreen {
+  background-color: #1c5666; /* Green background */
+  color: white;
+}
+
+.bookButtonGreen:hover {
+  background-color: #1c5666; /* Darker green on hover */
+}
+
+.logoImageFaq {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}

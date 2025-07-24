@@ -18,12 +18,11 @@ body {
 
 /* Optional: overlay to darken background and improve text readability */
 .app::before {
-  content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.4); /* translucent dark overlay */
+  background: transparent; /* translucent dark overlay */
   z-index: -1;
 }

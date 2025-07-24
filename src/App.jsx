@@ -8,6 +8,7 @@ import Menu from "./Components/Menu/Menu";
 import Resort from "./Components/Resort/Resort";
 import Home from "./Components/Home/Home";
 import Book from "./Components/Book/Book";
+import Faqs from "./Components/Faqs/Faqs";
 import "./App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/thingstodo" element={<ThingsToDo />} />
             <Route path="/exploretheisland" element={<ExploreIsland />} />
             <Route path="/booking" element={<Book />} />
+            <Route path="/faqs" element={<Faqs />} />
           </Routes>
         </main>
         <Footer />

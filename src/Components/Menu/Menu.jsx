@@ -7,17 +7,18 @@ const Menu = () => {
   const [isOpen, setOpen] = useState(false);
   const location = useLocation();
   const isBookingPage = location.pathname === "/booking";
+  const isFaqPage = location.pathname === "/faqs";
 
   return (
     <>
       <div
         className={`${styles.hamburgerWrapper} ${
-          isBookingPage ? styles.bookingColor : ""
+          isBookingPage || isFaqPage ? styles.bookingColor : ""
         }`}
       >
         <div
           className={`${styles.MenuText} ${
-            isBookingPage ? styles.bookingText : ""
+            isBookingPage || isFaqPage ? styles.bookingText : ""
           } ${isOpen ? styles.hidden : ""}`}
         >
           MENU
@@ -26,7 +27,7 @@ const Menu = () => {
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
-          color={isBookingPage || isOpen ? "#1c5666" : "#FFFFFF"} // ✅ fixed logic
+          color={isOpen || isBookingPage || isFaqPage ? "#1c5666" : "#FFFFFF"}
         />
       </div>
 
@@ -64,7 +65,7 @@ const Menu = () => {
           </Link>
           <div className={styles.linkContainerSecondary}>
             <Link
-              to="/faq"
+              to="/faqs"
               className={`${styles.link} ${styles.subLink}`}
               onClick={() => setOpen(false)}
             >
