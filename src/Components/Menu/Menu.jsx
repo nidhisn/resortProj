@@ -8,17 +8,18 @@ const Menu = () => {
   const location = useLocation();
   const isBookingPage = location.pathname === "/booking";
   const isFaqPage = location.pathname === "/faqs";
+  const isExplore = location.pathname === "/exploretheisland";
 
   return (
     <>
       <div
         className={`${styles.hamburgerWrapper} ${
-          isBookingPage || isFaqPage ? styles.bookingColor : ""
+          isBookingPage || isFaqPage || isExplore ? styles.bookingColor : ""
         }`}
       >
         <div
           className={`${styles.MenuText} ${
-            isBookingPage || isFaqPage ? styles.bookingText : ""
+            isBookingPage || isFaqPage || isExplore ? styles.bookingText : ""
           } ${isOpen ? styles.hidden : ""}`}
         >
           MENU
@@ -27,7 +28,11 @@ const Menu = () => {
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
-          color={isOpen || isBookingPage || isFaqPage ? "#1c5666" : "#FFFFFF"}
+          color={
+            isOpen || isBookingPage || isFaqPage || isExplore
+              ? "#1c5666"
+              : "#FFFFFF"
+          }
         />
       </div>
 

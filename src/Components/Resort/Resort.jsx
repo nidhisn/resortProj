@@ -59,17 +59,6 @@ const Resort = () => {
               Sand <br /> Bank <br /> Resort
             </h1>
           </div>
-          <div className={styles.rightDetails}>
-            <p>
-              <strong>Rooms</strong>
-              <br />7
-            </p>
-            <p>
-              <strong>Guests</strong>
-              <br />
-              Max 2
-            </p>
-          </div>
         </div>
       </section>
       {/* Description Section */}

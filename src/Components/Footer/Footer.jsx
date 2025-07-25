@@ -1,83 +1,58 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import logoGreen from "../../images/logoGreeen.png"; // If using src folder
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
-        {/* Contact Information */}
-        <div className={styles.column}>
-          <p className={styles.address}>
-            Beach No.5, Lakshadweep Islands
-            <br />
-            Lakshadweep, IN 682559
-          </p>
-          <h4>GETTING HERE</h4>
-          <p className={styles.phone}>+91 484 123 4567</p>
-
+        {/* Left Column - Address */}
+        <div className={styles.left}>
           <p>
-            <strong>General Enquiries</strong>
-            <br />
-            hello@sandbankresort.com
+            Sand Bank Resort, <br />
+            V58V+25C, Agatti, Lakshadweep, <br />
+            82553, India
           </p>
-          <p>
-            <strong>Reservations</strong>
-            <br />
-            booking@sandbankresort.com
+          <p className={styles.email}>
+            <a href="mailto:reservations@sandbank.com.in">
+              reservations@sandbank.com.in
+            </a>
           </p>
-
           <div className={styles.socials}>
-            <span>INSTAGRAM</span>
-            <span>FACEBOOK</span>
+            <a href="#">Instagram</a>
+            <a href="#">Tripadvisor</a>
+            <a href="#">Facebook</a>
           </div>
         </div>
 
-        {/* Local Info */}
-        <div className={styles.column}>
-          <h4>LOCAL INFORMATION</h4>
-          <p>🌤️ 29°C / 84.2°F — Lakshadweep, IN</p>
-          <p>🕒 11:34 PM</p>
-
-          <h4>WEBSITE THEME</h4>
-          <div className={styles.themeToggle}>
-            <button className={styles.day}>DAY</button>
-            <button className={styles.night}>NIGHT</button>
-          </div>
-        </div>
-
-        {/* Newsletter Signup */}
-        <div className={styles.column}>
-          <p>
-            Get exclusive offers, event info, and resort updates from
-            Lakshadweep Sand Bank Resort, directly to your inbox.
-          </p>
-          <input
-            type="email"
-            className={styles.emailInput}
-            placeholder="Email Address"
+        {/* Center Column - Logo */}
+        <div className={styles.center}>
+          <img
+            src={logoGreen}
+            alt="Sand Bank Resort Logo"
+            className={styles.logo}
           />
-          <p className={styles.terms}>
-            By signing up, I accept the <a href="#">privacy policy</a> and{" "}
-            <a href="#">terms & conditions</a>.
-          </p>
-          <button className={styles.subscribe}>SUBSCRIBE</button>
+        </div>
+
+        {/* Right Column - Links */}
+        <div className={styles.right}>
+          <Link to="/resort">The Resort</Link>
+          <Link to="/thingstodo">Things to do</Link>
+          <Link to="/exploretheisland">Explore the Island</Link>
+          <Link to="/faqs">FAQ</Link>
+          <Link to="/booking">Contact</Link>
         </div>
       </div>
 
-      {/* Footer Nav */}
+      {/* Bottom Section */}
       <div className={styles.bottom}>
-        <div className={styles.links}>
-          <a href="#">HOME</a>
-          <a href="#">THE RESORT</a>
-          <a href="#">ACTIVITIES</a>
-          <a href="#">ENQUIRIES</a>
-          <a href="#">FAQ</a>
-
-          <div className={styles.legal}>
-            <span>© Lakshadweep Sand Bank Resort 2025</span>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-          </div>
+        <p>© Sand Bank Resort 2025 All Rights Reserved.</p>
+        <div className={styles.bottomLinks}>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Cancellation Policy</a>
+          <a href="#">Privacy</a>
+          <a href="#">Sand Bank Resort</a>
         </div>
       </div>
     </footer>

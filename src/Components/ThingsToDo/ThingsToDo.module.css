@@ -4,17 +4,33 @@
   overflow-x: hidden;
 }
 
-/* Background image */
+/* 3D Parallax Background */
 .background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-image: url("../../images/thingtodoBG2.jpg");
+  height: 100vh;
+  background-image: url("../../images/background.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-position: center;
+  will-change: transform;
   z-index: 0;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-out;
+  animation: waterFloat 10s ease-in-out infinite alternate;
+}
+
+@keyframes waterFloat {
+  0% {
+    background-position: center;
+  }
+  50% {
+    background-position: center 20px;
+  }
+  100% {
+    background-position: center -20px;
+  }
 }
 
 .content {
@@ -25,7 +41,8 @@
 }
 
 .main {
-  margin-left: 20%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   padding: 2rem;
   color: white;
@@ -33,21 +50,52 @@
 }
 
 .heading {
-  font-size: 5.5rem;
   font-family: "Playfair Display", serif;
-  color: #1c5666;
-  margin-bottom: 3rem;
-  margin-top: 6rem;
+  margin-bottom: 2rem;
   font-weight: 600;
+  display: block;
+  line-height: 1.2;
+  font-size: calc(10px + 12vh);
+  letter-spacing: 6px;
+  background: -webkit-linear-gradient(#fff, hsla(0, 0%, 100%, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight {
+  color: #ffecb3;
 }
 
 .subheading {
   font-size: 2.5rem;
   font-weight: 300;
   display: block;
-  margin-top: 1.5rem;
-  color: #1c5666;
+  margin-top: 1rem;
+  color: #f0f0f0;
   font-family: "Playfair Display", serif;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 4rem;
+}
+
+/* Floating text animation */
+.floatingText {
+  animation: floatText 6s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* Zig-zag layout */
@@ -70,6 +118,11 @@
   width: 400px;
   height: 300px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image:hover {
+  transform: scale(1.05);
 }
 
 .text {
@@ -85,14 +138,6 @@
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #ffffff;
-}
-
-/* Decorative SVG */
-.threadWrapper {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Responsive */

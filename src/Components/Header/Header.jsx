@@ -8,11 +8,12 @@ export default function Header() {
   const location = useLocation();
   const isFaqPage = location.pathname === "/faqs";
   const isThingsToDo = location.pathname === "/thingstodo";
+  const isExplore = location.pathname === "/exploretheisland";
 
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
-        {isFaqPage || isThingsToDo ? (
+        {isFaqPage ? (
           <img
             src={GreenLogo}
             alt="Green Logo"
@@ -29,7 +30,7 @@ export default function Header() {
           <Link
             to="/booking"
             className={`${styles.bookButton} ${
-              isFaqPage || isThingsToDo ? styles.bookButtonGreen : ""
+              isFaqPage ? styles.bookButtonGreen : ""
             }`}
           >
             BOOK MY STAY

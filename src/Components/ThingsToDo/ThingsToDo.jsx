@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./ThingsToDo.module.css";
 import image1 from "../../images/snorkeling3.jpg";
-import image2 from "../../images/scuba.jpg";
+import image2 from "../../images/tortoisee.png";
 import fishing from "../../images/fishing.jpg";
 import kite from "../../images/kitesurfing.jpg";
 import kayaking from "../../images/kayaking.jpg";
@@ -44,27 +44,37 @@ const activities = [
       "Dolphin watching is one of the most exciting things to do in Lakshadweep. The Dolphin Drive Centre on Kavaratti Island is the best place to see these amazing animals. Local fishermen take you out in traditional wooden boats called ‘oti’ for a fun and safe ride. The best part? You can spot Bottlenose dolphins jumping, playing, and swimming in the clear blue sea. These dolphins are friendly and often come close to the boat, making it easy to take photos and enjoy the moment. Watching them in their natural home is truly a magical experience you won’t forget.",
     image: dolphin,
   },
-
-  {
-    title: "Dolphin watching",
-    description:
-      "Dolphin watching is one of the most exciting things to do in Lakshadweep. The Dolphin Drive Centre on Kavaratti Island is the best place to see these amazing animals. Local fishermen take you out in traditional wooden boats called ‘oti’ for a fun and safe ride. The best part? You can spot Bottlenose dolphins jumping, playing, and swimming in the clear blue sea. These dolphins are friendly and often come close to the boat, making it easy to take photos and enjoy the moment. Watching them in their natural home is truly a magical experience you won’t forget.",
-    image: dolphin,
-  },
-
-  {
-    title: "Dolphin watching",
-    description:
-      "Dolphin watching is one of the most exciting things to do in Lakshadweep. The Dolphin Drive Centre on Kavaratti Island is the best place to see these amazing animals. Local fishermen take you out in traditional wooden boats called ‘oti’ for a fun and safe ride. The best part? You can spot Bottlenose dolphins jumping, playing, and swimming in the clear blue sea. These dolphins are friendly and often come close to the boat, making it easy to take photos and enjoy the moment. Watching them in their natural home is truly a magical experience you won’t forget.",
-    image: dolphin,
-  },
 ];
 
 const ThingsToDo = () => {
+  const bgRef = useRef(null);
+
+  useEffect(() => {
+    const bg = bgRef.current;
+
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 10;
+      const y = (e.clientY / innerHeight - 0.5) * 10;
+      bg.style.transform = `scale(1.08) rotateX(${y}deg) rotateY(${x}deg)`;
+    };
+
+    const handleMouseLeave = () => {
+      bg.style.transform = `scale(1.05) rotateX(0) rotateY(0)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
-      <div className={styles.background}></div>
-
+      <div ref={bgRef} className={styles.background}></div>
       <div className={styles.content}>
         <div className={styles.main}>
           <h1 className={styles.heading}>
@@ -99,7 +109,7 @@ const ThingsToDo = () => {
             }`}
           >
             <img src={item.image} alt={item.title} className={styles.image} />
-            <div className={styles.text}>
+            <div className={`${styles.text} ${styles.floatingText}`}>
               <h2>{item.title}</h2>
               <p>{item.description}</p>
             </div>
