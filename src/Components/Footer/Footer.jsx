@@ -1,11 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react"; // Import forwardRef
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 import logoGreen from "../../images/logoGreeen.png"; // If using src folder
 
-const Footer = () => {
+// Wrap your functional component with React.forwardRef
+const Footer = forwardRef((props, ref) => {
   return (
-    <footer className={styles.footer}>
+    // Attach the forwarded ref to the root HTML element of your footer
+    <footer ref={ref} className={styles.footer}>
       <div className={styles.top}>
         {/* Left Column - Address */}
         <div className={styles.left}>
@@ -57,6 +59,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
 
 export default Footer;
