@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./ThingsToDo.module.css";
 import image1 from "../../images/snorkeling3.jpg";
-import image2 from "../../images/tortoisee.png";
+import image2 from "../../images/scuba.jpg";
 import fishing from "../../images/fishing.jpg";
 import kite from "../../images/kitesurfing.jpg";
 import kayaking from "../../images/kayaking.jpg";
@@ -164,14 +164,32 @@ const ThingsToDo = () => {
         threadPath.style.strokeDashoffset = offset;
 
         // Move kayaking icon along the path
+        // Move and rotate kayaking icon along the path
         if (kayakingIconElement) {
-          const point = threadPath.getPointAtLength(totalPathLength * progress);
+          const pathLengthAtProgress = totalPathLength * progress;
+
+          // Get current point
+          const point = threadPath.getPointAtLength(pathLengthAtProgress);
+
+          // Get a slightly ahead point to calculate angle
+          const delta = 1; // small offset for angle calc
+          const nextPoint = threadPath.getPointAtLength(
+            Math.min(totalPathLength, pathLengthAtProgress + delta)
+          );
+
+          // Calculate angle between points
+          const dx = nextPoint.x - point.x;
+          const dy = nextPoint.y - point.y;
+          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+          // Position and rotate icon
           kayakingIconElement.setAttribute("x", point.x - 61);
           kayakingIconElement.setAttribute("y", point.y - 61);
+          kayakingIconElement.setAttribute(
+            "transform",
+            `rotate(${angle}, ${point.x}, ${point.y})`
+          );
         }
-
-        // Fade in the icon when animation starts
-        kayakingIconElement.style.opacity = progress > 0 ? 1 : 0;
       });
     };
 
@@ -232,7 +250,7 @@ const ThingsToDo = () => {
                 className={styles.threadPath}
                 // Significantly extended path. You might need to adjust the Y values (e.g., 2800, 3000, 3200, 3400)
                 // further based on the actual height of your content.
-                d="M 50 0 C -23 209 114 264 50 300 S 84 432 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400" // Path extended significantly - I've added more segments here to ensure it reaches far down enough.
+                d="M 50 0 C 1 181 117 190 50 300 S 72 429 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400"
               />
               {/* SVG <image> for the kayaking icon */}
               <image

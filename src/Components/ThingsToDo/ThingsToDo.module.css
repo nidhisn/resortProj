@@ -113,8 +113,26 @@
 
 /* NEW: Styles for the kayaking icon */
 .kayakingIcon {
-  /* Removed initial opacity: 0; */
-  transition: opacity 0.5s ease-in-out; /* Smooth fade-in controlled by JS */
+  transition: opacity 0.5s ease-in-out;
+  animation: kayakBob 6s ease-in-out infinite;
+}
+
+@keyframes kayakBob {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-1.5px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0.5deg);
+  }
+  75% {
+    transform: translateY(1.5px) rotate(-0.25deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
 /* --- Activities Section --- */
