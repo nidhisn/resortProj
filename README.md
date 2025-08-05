@@ -24,8 +24,9 @@ This project is built with **React.js**, offering smooth page transitions and a 
 ---
 
 ## 🌍 Live Demo  
-Coming Soon (Deploy on **Netlify** or **Vercel** for a live preview!)
-
+Check out the deployed site here:  
+🔗 [Sand bank resort](https://sandbankresort.com/)
+ 
 ---
 
 ## ⛏️ Tech Stack and Libraries
@@ -49,3 +50,20 @@ Coming Soon (Deploy on **Netlify** or **Vercel** for a live preview!)
    ```sh
    git clone <repository-url>
    cd sandbank-resort
+
+2. **Install dependencies**  
+   ```sh
+   npm install
+   #or
+   yarn install
+
+3. **Run the development server**  
+   ```sh
+   npm start
+   #or
+   yarn start
+
+4. **Build for the production**  
+   ```sh
+   npm run build
+
