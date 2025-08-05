@@ -24,11 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Add a build step if your site needs one (e.g., for React, Vue, etc.)
-      # - name: Install & Build
-      #   run: |
-      #     npm install
-      #     npm run build
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -38,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'   # <-- Change this to your built site folder (e.g., build/, dist/, public/)
+          path: './build'   # <-- Change to your build folder
 
       - name: Deploy to GitHub Pages
         id: deployment
