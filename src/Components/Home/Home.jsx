@@ -194,15 +194,15 @@ export default function Home() {
       <div className={styles.buttonContainer}>
         <button
           className={`${styles.actionButton} ${styles.filled}`}
-          onClick={() => navigate("/resort")}
+          onClick={() => navigate("/gallery")}
         >
-          resort
+          Gallery
         </button>
         <button
           className={`${styles.actionButton} ${styles.outlined}`}
-          onClick={() => navigate("/gallery")}
+          onClick={() => navigate("/resort")}
         >
-          gallery
+          Resort
         </button>
       </div>
     </div>

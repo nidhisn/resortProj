@@ -28,7 +28,7 @@
   font-size: 2.2rem;
   max-width: 800px;
   z-index: 2;
-  font-family: "playfair", serif;
+  font-family: "Gabarito", sans-serif;
   font-weight: bold;
 }
 
@@ -44,15 +44,14 @@
   width: 150px;
   height: 45px;
   border-radius: 25px;
-  font-size: 1.4rem;
-  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  font-family: "Gabarito", sans-serif;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  text-transform: uppercase;
 }
 
 /* Filled button (Resort) */

@@ -13,6 +13,7 @@ import Resort from "./Components/Resort/Resort";
 import Home from "./Components/Home/Home";
 import Book from "./Components/Book/Book";
 import Faqs from "./Components/Faqs/Faqs";
+import Gallery from "./Components/Gallery/Gallery";
 import LoaderWrapper from "./Components/Loader/LoaderWrapper"; // <-- import wrapper
 import "./App.css";
 import React, { useRef } from "react";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/exploretheisland" element={<ExploreIsland />} />
             <Route path="/booking" element={<Book />} />
             <Route path="/faqs" element={<Faqs />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </LoaderWrapper>
       </main>
