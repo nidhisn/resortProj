@@ -4,6 +4,12 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .canvas {
@@ -16,8 +22,7 @@
 }
 
 .introText {
-  position: absolute;
-  bottom: 20px;
+  margin-bottom: 20px;
   left: 20px;
   color: #1c5666;
   font-size: 2.2rem;
@@ -28,9 +33,6 @@
 }
 
 .buttonContainer {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -78,17 +80,20 @@
 }
 
 @media (max-width: 500px) {
+  .home {
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+  }
   .introText {
     font-size: 1.8rem;
-    left: 50%;
-    transform: translateX(-50%);
+
     text-align: center;
   }
 
   .buttonContainer {
     flex-direction: column;
-    right: 50%;
-    transform: translateX(50%);
+    margin-top: 20px;
     bottom: 150px;
   }
 }

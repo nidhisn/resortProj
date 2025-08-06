@@ -1,0 +1,83 @@
+/* src/Components/Loader/Loader.css */
+.loader-transition {
+  /* Styles for the overall container, positioning it in the center of the screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* Or any background color you want */
+  z-index: 9999; /* To ensure it's on top of other content */
+}
+
+.loader-solo-container {
+  /* Styles for each individual wave container */
+  position: relative;
+  width: 140px;
+  height: 26px;
+  margin-bottom: 10px; /* Space between the waves */
+}
+
+.loader-path,
+.loader-static-path {
+  fill: none;
+  stroke: #1c5666; /* Adjust color as needed */
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* The animated wave */
+.loader .loader-path {
+  stroke-dasharray: 156.4887; /* Must be the exact length of the path */
+  stroke-dashoffset: 156.4887;
+  animation: loader-path-animation 2s linear infinite forwards;
+}
+
+/* Delay for each wave */
+.loader-solo-container:nth-child(1) .loader .loader-path {
+  animation-delay: 0s;
+}
+.loader-solo-container:nth-child(2) .loader .loader-path {
+  animation-delay: 0.2s;
+}
+.loader-solo-container:nth-child(3) .loader .loader-path {
+  animation-delay: 0.4s;
+}
+
+/* The static wave (background line) */
+.loader-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.loader-static-path {
+  opacity: 0.2; /* A subtle, lighter version of the main path */
+}
+
+/* The animation keyframes */
+@keyframes loader-path-animation {
+  0% {
+    stroke-dashoffset: 156.4887;
+  }
+  100% {
+    stroke-dashoffset: -156.4887;
+  }
+}

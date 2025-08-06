@@ -9,17 +9,22 @@ const Menu = () => {
   const isBookingPage = location.pathname === "/booking";
   const isFaqPage = location.pathname === "/faqs";
   const isExplore = location.pathname === "/exploretheisland";
+  const isHome = location.pathname === "/";
 
   return (
     <>
       <div
         className={`${styles.hamburgerWrapper} ${
-          isBookingPage || isFaqPage || isExplore ? styles.bookingColor : ""
+          isBookingPage || isFaqPage || isExplore || isHome
+            ? styles.bookingColor
+            : ""
         }`}
       >
         <div
           className={`${styles.MenuText} ${
-            isBookingPage || isFaqPage || isExplore ? styles.bookingText : ""
+            isBookingPage || isFaqPage || isExplore || isHome
+              ? styles.bookingText
+              : ""
           } ${isOpen ? styles.hidden : ""}`}
         >
           MENU
@@ -29,7 +34,7 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            isOpen || isBookingPage || isFaqPage || isExplore
+            isOpen || isBookingPage || isFaqPage || isExplore || isHome
               ? "#1c5666"
               : "#FFFFFF"
           }
