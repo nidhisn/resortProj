@@ -18,3 +18,22 @@
   font-family: "Helvetica Neue", sans-serif;
   margin: 0;
 }
+
+/* Responsive downsizing for embedded logo */
+@media (max-width: 1024px) {
+  .logoImage {
+    width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoImage {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoImage {
+    width: 110px;
+  }
+}

@@ -9,6 +9,12 @@
   z-index: 10;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
 .nav {
   margin-right: 2rem;
 }
@@ -47,4 +53,70 @@
   width: 150px;
   height: auto;
   object-fit: contain;
+}
+
+/* Ensure a base class exists when used alongside logoImageFaq */
+.logoImage {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nav {
+    margin-right: 1rem;
+  }
+  .logo {
+    padding-left: 0.75rem;
+  }
+  .logoImage,
+  .logoImageFaq {
+    width: 130px;
+  }
+  .bookButton {
+    font-size: 0.7rem;
+    letter-spacing: 0.15rem;
+    padding: 8px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.25rem 0;
+  }
+  .nav {
+    margin-right: 0.75rem;
+  }
+  .logo {
+    padding-left: 0.5rem;
+  }
+  .logoImage,
+  .logoImageFaq {
+    width: 120px;
+  }
+  .bookButton {
+    font-size: 0.68rem;
+    letter-spacing: 0.12rem;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    margin-right: 0.5rem;
+  }
+  .logo {
+    padding-left: 0.5rem;
+  }
+  .logoImage,
+  .logoImageFaq {
+    width: 110px;
+  }
+  .bookButton {
+    font-size: 0.62rem;
+    letter-spacing: 0.1rem;
+    padding: 6px 10px;
+    border-width: 1.5px;
+  }
 }

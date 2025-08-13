@@ -119,3 +119,108 @@
 .hidden {
   display: none;
 }
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 80vw;
+    left: -80vw;
+  }
+  .linkContainer {
+    padding: 6rem 5rem;
+  }
+  .link {
+    font-size: 2.4rem;
+    line-height: 56px;
+    margin: 1.2rem 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .hamburgerWrapper {
+    left: 16px;
+  }
+  .MenuText {
+    font-size: 0.7rem;
+    letter-spacing: 0.25rem;
+  }
+  .sidebar {
+    width: 78vw;
+    left: -78vw;
+  }
+  .linkContainer {
+    padding: 5rem 3rem;
+  }
+  .link {
+    font-size: 2rem;
+    line-height: 46px;
+    margin: 1rem 0;
+  }
+  .subLink {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburgerWrapper {
+    left: 12px;
+  }
+  .MenuText {
+    font-size: 0.65rem;
+    letter-spacing: 0.2rem;
+  }
+  .sidebar {
+    width: 100vw;
+    left: -100vw;
+  }
+  .linkContainer {
+    padding: 4.5rem 2rem;
+    position: absolute;
+    right: 1rem;
+    bottom: 1.25rem;
+    align-items: flex-end;
+    text-align: right;
+  }
+  .link {
+    font-size: 1.65rem;
+    line-height: 36px;
+    margin: 1rem 0;
+  }
+  .linkContainerSecondary {
+    align-items: flex-end;
+    width: 100%;
+    text-align: right;
+  }
+  .subLink {
+    font-size: 1rem;
+    text-align: right;
+  }
+}
+
+@media (max-width: 420px) {
+  .MenuText {
+    font-size: 0.6rem;
+    letter-spacing: 0.18rem;
+  }
+  .linkContainer {
+    padding: 4rem 1.5rem;
+    right: 0.75rem;
+    bottom: 1rem;
+  }
+  .link {
+    font-size: 1.35rem;
+    line-height: 30px;
+    margin: 0.75rem 0;
+    text-align: right;
+  }
+  .linkContainerSecondary {
+    align-items: flex-end;
+  }
+  .subLink {
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    text-align: right;
+  }
+}

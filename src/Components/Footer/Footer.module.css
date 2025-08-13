@@ -97,3 +97,56 @@
 .bottomLinks a:hover {
   color: #1c5666;
 }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .top {
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  .logo {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .left,
+  .center,
+  .right {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  .socials {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .right {
+    align-items: center;
+  }
+  .logo {
+    max-width: 200px;
+  }
+  .bottom {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+  .logo {
+    max-width: 170px;
+  }
+  .right a,
+  .left,
+  .socials {
+    font-size: 0.9rem;
+  }
+}

@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import styles from "./Home.module.css";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Shaders
 import simulationVertexShader from "../shaders/vertexShader.glsl?raw";
@@ -15,9 +17,34 @@ import textImg from "../../images/text2.png";
 export default function Home() {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
+  const heroRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const staticBgRef = useRef(null);
+  const textImageRef = useRef(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Track viewport size to disable Three.js on small screens
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const handleChange = (e) => setIsSmallScreen(e.matches);
+    setIsSmallScreen(mql.matches);
+    if (mql.addEventListener) {
+      mql.addEventListener("change", handleChange);
+    } else {
+      mql.addListener(handleChange);
+    }
+    return () => {
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", handleChange);
+      } else {
+        mql.removeListener(handleChange);
+      }
+    };
+  }, []);
 
   useEffect(() => {
-    if (!canvasRef.current) {
+    if (isSmallScreen || !canvasRef.current) {
       return;
     }
 
@@ -148,8 +175,9 @@ export default function Home() {
     };
     const handleMouseLeave = () => mouse.set(0, 0);
 
-    renderer.domElement.addEventListener("mousemove", handleMouseMove);
-    renderer.domElement.addEventListener("mouseleave", handleMouseLeave);
+    // Listen on window so scrolling sections remain interactive
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     // === Animation Loop ===
     const animate = () => {
@@ -173,8 +201,8 @@ export default function Home() {
     // === Cleanup ===
     return () => {
       window.removeEventListener("resize", handleResize);
-      renderer.domElement.removeEventListener("mousemove", handleMouseMove);
-      renderer.domElement.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
       renderer.dispose();
       rtA.dispose();
       rtB.dispose();
@@ -182,29 +210,93 @@ export default function Home() {
       rendererMaterial.dispose();
       combinedTexture.dispose();
     };
-  }, []);
+  }, [isSmallScreen]);
+
+  // === ScrollTrigger: Pin hero and fade canvas/UI on scroll ===
+  useEffect(() => {
+    if (!heroRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const backgroundEl = isSmallScreen
+      ? staticBgRef.current
+      : canvasRef.current;
+    const textEl = textRef.current;
+    const buttonsEl = buttonsRef.current;
+    const textPngEl = isSmallScreen ? textImageRef.current : null;
+
+    if (backgroundEl) gsap.set(backgroundEl, { opacity: 1 });
+    if (textEl) gsap.set(textEl, { opacity: 1 });
+    if (buttonsEl) gsap.set(buttonsEl, { opacity: 1 });
+    if (textPngEl) gsap.set(textPngEl, { opacity: 1 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        pin: true,
+        onLeave: () => {
+          if (backgroundEl) backgroundEl.style.pointerEvents = "none";
+        },
+        onEnterBack: () => {
+          if (backgroundEl) backgroundEl.style.pointerEvents = "auto";
+        },
+      },
+    });
+
+    if (backgroundEl) tl.to(backgroundEl, { opacity: 0, ease: "none" }, 0);
+    if (textEl) tl.to(textEl, { opacity: 0, y: -30, ease: "none" }, 0);
+    if (buttonsEl) tl.to(buttonsEl, { opacity: 0, y: -30, ease: "none" }, 0);
+    if (textPngEl) tl.to(textPngEl, { opacity: 0, y: -30, ease: "none" }, 0);
+
+    return () => {
+      tl.scrollTrigger && tl.scrollTrigger.kill();
+      tl.kill();
+    };
+  }, [isSmallScreen]);
 
   return (
     <div className={styles.home}>
-      <canvas ref={canvasRef} className={styles.canvas} />
-      <p className={styles.introText}>
-        Find your perfect spot in the sand, where time slows down and the waves
-        write your story
-      </p>
-      <div className={styles.buttonContainer}>
-        <button
-          className={`${styles.actionButton} ${styles.filled}`}
-          onClick={() => navigate("/gallery")}
-        >
-          Gallery
-        </button>
-        <button
-          className={`${styles.actionButton} ${styles.outlined}`}
-          onClick={() => navigate("/resort")}
-        >
-          Resort
-        </button>
-      </div>
+      <section ref={heroRef} className={styles.hero}>
+        {isSmallScreen ? (
+          <div
+            ref={staticBgRef}
+            className={styles.staticBg}
+            style={{ backgroundImage: `url(${backgroundImg})` }}
+          />
+        ) : (
+          <canvas ref={canvasRef} className={styles.canvas} />
+        )}
+        {isSmallScreen ? (
+          <img
+            ref={textImageRef}
+            src={textImg}
+            alt="Sand Bank Resort"
+            className={styles.textImage}
+          />
+        ) : (
+          <p ref={textRef} className={styles.introText}>
+            Find your perfect spot in the sand, where time slows down and the
+            waves write your story
+          </p>
+        )}
+        <div ref={buttonsRef} className={styles.buttonContainer}>
+          <button
+            className={`${styles.actionButton} ${styles.filled}`}
+            onClick={() => navigate("/gallery")}
+          >
+            Gallery
+          </button>
+          <button
+            className={`${styles.actionButton} ${styles.outlined}`}
+            onClick={() => navigate("/resort")}
+          >
+            Resort
+          </button>
+        </div>
+      </section>
+      <section className={styles.nextSection}></section>
     </div>
   );
 }

@@ -60,6 +60,26 @@ const ThingsToDo = () => {
   const subheadingRef = useRef(null);
   const oceanSectionRef = useRef(null);
   const lastActivityRef = useRef(null); // Ref for the last activity element
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Track viewport size to disable thread/gif on small screens
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const handleChange = (e) => setIsSmallScreen(e.matches);
+    setIsSmallScreen(mql.matches);
+    if (mql.addEventListener) {
+      mql.addEventListener("change", handleChange);
+    } else {
+      mql.addListener(handleChange);
+    }
+    return () => {
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", handleChange);
+      } else {
+        mql.removeListener(handleChange);
+      }
+    };
+  }, []);
 
   // Parallax effect for background image (unchanged)
   useEffect(() => {
@@ -86,8 +106,8 @@ const ThingsToDo = () => {
   }, []);
 
   // Scroll thread growth animation with SVG path drawing and icon movement
-  // Scroll thread growth animation with SVG path drawing and icon movement
   useEffect(() => {
+    if (isSmallScreen) return;
     const threadSvg = threadSvgRef.current;
     const threadPath = threadPathRef.current;
     const kayakingIconElement = kayakingIconRef.current;
@@ -213,7 +233,7 @@ const ThingsToDo = () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       clearTimeout(initialRenderTimeout);
     };
-  }, []);
+  }, [isSmallScreen]);
 
   return (
     <div className={styles.container}>
@@ -225,45 +245,47 @@ const ThingsToDo = () => {
           <span ref={subheadingRef} className={styles.subheading}>
             Scroll Your Way to Adventure
           </span>
-          <div className={styles.threadWrapper}>
-            <svg
-              ref={threadSvgRef}
-              className={styles.threadSvg}
-              viewBox="0 0 100 2500" // Increased viewBox height to give more room for the path
-              preserveAspectRatio="xMidYMin slice"
-            >
-              <defs>
-                <linearGradient
-                  id="threadGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#fff" />
-                  <stop offset="88%" stopColor="#b9e6f9" />
-                  <stop offset="100%" stopColor="transparent" />
-                </linearGradient>
-              </defs>
-              <path
-                ref={threadPathRef}
-                className={styles.threadPath}
-                // Significantly extended path. You might need to adjust the Y values (e.g., 2800, 3000, 3200, 3400)
-                // further based on the actual height of your content.
-                d="M 50 0 C 1 181 117 190 50 300 S 72 429 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400"
-              />
-              {/* SVG <image> for the kayaking icon */}
-              <image
-                ref={kayakingIconRef}
-                href={kayakingIcon} // Use href for SVG image, not src
-                x="0" // Will be updated by JS
-                y="0" // Will be updated by JS
-                width="200" // Set the actual width of your icon - changed to 122 from 200 to match the -61 offset
-                height="200" // Set the actual height of your icon - changed to 122 from 200
-                className={styles.kayakingIcon} // Add a class for CSS styling
-              />
-            </svg>
-          </div>
+          {!isSmallScreen && (
+            <div className={styles.threadWrapper}>
+              <svg
+                ref={threadSvgRef}
+                className={styles.threadSvg}
+                viewBox="0 0 100 2500" // Increased viewBox height to give more room for the path
+                preserveAspectRatio="xMidYMin slice"
+              >
+                <defs>
+                  <linearGradient
+                    id="threadGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stopColor="#fff" />
+                    <stop offset="88%" stopColor="#b9e6f9" />
+                    <stop offset="100%" stopColor="transparent" />
+                  </linearGradient>
+                </defs>
+                <path
+                  ref={threadPathRef}
+                  className={styles.threadPath}
+                  // Significantly extended path. You might need to adjust the Y values (e.g., 2800, 3000, 3200, 3400)
+                  // further based on the actual height of your content.
+                  d="M 50 0 C 1 181 117 190 50 300 S 72 429 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400"
+                />
+                {/* SVG <image> for the kayaking icon */}
+                <image
+                  ref={kayakingIconRef}
+                  href={kayakingIcon} // Use href for SVG image, not src
+                  x="0" // Will be updated by JS
+                  y="0" // Will be updated by JS
+                  width="200" // Set the actual width of your icon - changed to 122 from 200 to match the -61 offset
+                  height="200" // Set the actual height of your icon - changed to 122 from 200
+                  className={styles.kayakingIcon} // Add a class for CSS styling
+                />
+              </svg>
+            </div>
+          )}
         </div>
       </div>
 

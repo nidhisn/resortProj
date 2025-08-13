@@ -12,14 +12,17 @@
   justify-content: center;
   background-color: white; /* Or any background color you want */
   z-index: 9999; /* To ensure it's on top of other content */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .loader-solo-container {
   /* Styles for each individual wave container */
   position: relative;
-  width: 140px;
-  height: 26px;
-  margin-bottom: 10px; /* Space between the waves */
+  width: clamp(100px, 28vw, 220px);
+  aspect-ratio: 140 / 26;
+  height: auto;
+  margin-bottom: clamp(4px, 1.2vh, 10px); /* Space between the waves */
 }
 
 .loader-path,
@@ -79,5 +82,33 @@
   }
   100% {
     stroke-dashoffset: -156.4887;
+  }
+}
+
+/* Responsive refinements */
+@media (max-width: 480px) {
+  .loader-path,
+  .loader-static-path {
+    stroke-width: 1.4;
+  }
+  .loader-solo-container {
+    width: clamp(90px, 48vw, 160px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .loader-path,
+  .loader-static-path {
+    stroke-width: 2.2;
+  }
+  .loader-solo-container {
+    width: clamp(140px, 18vw, 240px);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .loader .loader-path {
+    animation-duration: 4s;
   }
 }

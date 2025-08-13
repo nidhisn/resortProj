@@ -187,3 +187,75 @@
   margin-bottom: 1rem;
   color: #eee;
 }
+
+/* ==========================
+   Responsive
+   ========================== */
+@media (max-width: 1200px) {
+  .contentWrapper {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .infoPanel {
+    width: 360px;
+  }
+}
+
+@media (max-width: 992px) {
+  .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem;
+  }
+  .mapWrapper {
+    max-width: 720px;
+  }
+  .infoPanel {
+    width: 100%;
+    max-width: 720px;
+  }
+  .legend {
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.8rem;
+  }
+  .zoomControls {
+    right: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .introText {
+    padding: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .mapWrapper {
+    max-width: 100%;
+  }
+  .legend {
+    position: static;
+    margin-top: 0.75rem;
+    background: rgba(0, 43, 51, 0.85);
+  }
+  .tabs {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .contentWrapper {
+    padding: 1rem;
+  }
+  .introText {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  .tab {
+    font-size: 0.95rem;
+  }
+  .legendItem {
+    font-size: 0.9rem;
+  }
+}
