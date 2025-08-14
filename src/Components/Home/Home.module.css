@@ -3,6 +3,7 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
+  padding-top: 80px; /* Account for fixed header height */
 }
 
 .hero {
@@ -12,10 +13,11 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding: 24px;
   box-sizing: border-box;
+  margin-top: -80px; /* Offset the home padding-top to maintain full viewport height */
 }
 
 .canvas {
@@ -121,6 +123,187 @@
   box-shadow: 0 0 0 3px rgba(28, 86, 102, 0.25), 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
+/* Vertical Scroll Down Text */
+.scrollDownText {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scrollDownText:hover {
+  opacity: 1;
+}
+
+.scrollLetter {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0b3d46;
+  font-family: "Gabarito", sans-serif;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  animation: scrollLetterFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+.scrollLetter:nth-child(1) {
+  --i: 0;
+}
+.scrollLetter:nth-child(2) {
+  --i: 1;
+}
+.scrollLetter:nth-child(3) {
+  --i: 2;
+}
+.scrollLetter:nth-child(4) {
+  --i: 3;
+}
+.scrollLetter:nth-child(5) {
+  --i: 4;
+}
+.scrollLetter:nth-child(6) {
+  --i: 5;
+}
+.scrollLetter:nth-child(7) {
+  --i: 6;
+}
+.scrollLetter:nth-child(8) {
+  --i: 7;
+}
+.scrollLetter:nth-child(9) {
+  --i: 8;
+}
+.scrollLetter:nth-child(10) {
+  --i: 9;
+}
+.scrollLetter:nth-child(11) {
+  --i: 10;
+}
+
+@keyframes scrollLetterFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+/* Sub Hero Section - Beautiful Styling */
+.subHero {
+  background: linear-gradient(to bottom, #1c5666, #a3d5d3);
+  padding: 0 24px 200px 24px; /* No top padding - waves start exactly at top */
+  text-align: center;
+  position: relative;
+  overflow: visible; /* Allow waves to extend above */
+  z-index: 10; /* Ensure it can overlay the hero */
+  margin-top: 0; /* Ensure no top margin */
+}
+
+.subHeroInner {
+  padding-top: 160px; /* Move top spacing inside */
+  position: relative;
+  z-index: 2;
+}
+
+/* Wave Container and Layers */
+.waveContainer {
+  position: absolute;
+  top: -80px; /* Move waves up to start exactly at the top edge */
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1; /* under content but above background */
+  /* border: 1px solid red; */
+}
+
+.waveLayer1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6; /* Ensure waves are above background */
+}
+
+.waveLayer2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 7; /* Layer waves properly */
+}
+
+.waveLayer3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8; /* Top wave layer */
+}
+
+/* Ensure waves are visible by overriding any conflicting styles */
+.waveContainer svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.waveContainer path {
+  fill-opacity: 1 !important;
+}
+
+.subHero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.subHero h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  color: white;
+  margin: 0 0 32px 0;
+  font-family: "Gabarito", sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+  margin-top: 40px; /* Add space below the waves */
+}
+
+.subHero p {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: #495057;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Gabarito", sans-serif;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.subHero h6 br {
+  display: block;
+  margin: 8px 0;
+}
+
 @media (max-width: 1024px) {
   .hero {
     padding: 20px;
@@ -131,6 +314,18 @@
   .actionButton {
     height: 50px;
     font-size: 1rem;
+  }
+  .subHero {
+    padding: 0 20px 160px 20px;
+  }
+  .subHeroInner {
+    padding-top: 140px;
+  }
+  .scrollDownText {
+    right: 30px;
+  }
+  .scrollLetter {
+    font-size: 1.1rem;
   }
 }
 
@@ -169,6 +364,26 @@
     padding: 0 16px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   }
+  .subHero {
+    padding: 0 18px 140px 18px;
+  }
+  .subHeroInner {
+    padding-top: 120px;
+  }
+  .subHero h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 24px;
+  }
+  .subHero p {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  }
+  .scrollDownText {
+    right: 20px;
+    gap: 3px;
+  }
+  .scrollLetter {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -194,5 +409,25 @@
     height: 40px;
     font-size: 0.9rem;
     padding: 0 14px;
+  }
+  .subHero {
+    padding: 0 16px 100px 16px;
+  }
+  .subHeroInner {
+    padding-top: 100px;
+  }
+  .subHero h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    margin-bottom: 20px;
+  }
+  .subHero p {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+  }
+  .scrollDownText {
+    right: 16px;
+    gap: 2px;
+  }
+  .scrollLetter {
+    font-size: 0.9rem;
   }
 }

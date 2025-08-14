@@ -4,6 +4,7 @@ import * as THREE from "three";
 import styles from "./Home.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Wave from "react-wavify";
 
 // Shaders
 import simulationVertexShader from "../shaders/vertexShader.glsl?raw";
@@ -212,7 +213,7 @@ export default function Home() {
     };
   }, [isSmallScreen]);
 
-  // === ScrollTrigger: Pin hero and fade canvas/UI on scroll ===
+  // === ScrollTrigger: Simple scroll behavior ===
   useEffect(() => {
     if (!heroRef.current) return;
     gsap.registerPlugin(ScrollTrigger);
@@ -229,30 +230,9 @@ export default function Home() {
     if (buttonsEl) gsap.set(buttonsEl, { opacity: 1 });
     if (textPngEl) gsap.set(textPngEl, { opacity: 1 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        pin: true,
-        onLeave: () => {
-          if (backgroundEl) backgroundEl.style.pointerEvents = "none";
-        },
-        onEnterBack: () => {
-          if (backgroundEl) backgroundEl.style.pointerEvents = "auto";
-        },
-      },
-    });
-
-    if (backgroundEl) tl.to(backgroundEl, { opacity: 0, ease: "none" }, 0);
-    if (textEl) tl.to(textEl, { opacity: 0, y: -30, ease: "none" }, 0);
-    if (buttonsEl) tl.to(buttonsEl, { opacity: 0, y: -30, ease: "none" }, 0);
-    if (textPngEl) tl.to(textPngEl, { opacity: 0, y: -30, ease: "none" }, 0);
-
+    // No pinning - let content scroll naturally
     return () => {
-      tl.scrollTrigger && tl.scrollTrigger.kill();
-      tl.kill();
+      // Cleanup if needed
     };
   }, [isSmallScreen]);
 
@@ -275,13 +255,14 @@ export default function Home() {
             alt="Sand Bank Resort"
             className={styles.textImage}
           />
-        ) : (
-          <p ref={textRef} className={styles.introText}>
-            Find your perfect spot in the sand, where time slows down and the
-            waves write your story
-          </p>
-        )}
-        <div ref={buttonsRef} className={styles.buttonContainer}>
+        ) : null}
+        {/* 
+        <p ref={textRef} className={styles.introText}>
+          Find your perfect spot in the sand, where time slows down and the
+          waves write your story
+        </p>
+        */}
+        {/* <div ref={buttonsRef} className={styles.buttonContainer}>
           <button
             className={`${styles.actionButton} ${styles.filled}`}
             onClick={() => navigate("/gallery")}
@@ -294,9 +275,56 @@ export default function Home() {
           >
             Resort
           </button>
+        </div> */}
+
+        {/* Vertical Scroll Down Text 
+        <div className={styles.scrollDownText}>
+          <span className={styles.scrollLetter}>S</span>
+          <span className={styles.scrollLetter}>c</span>
+          <span className={styles.scrollLetter}>r</span>
+          <span className={styles.scrollLetter}>o</span>
+          <span className={styles.scrollLetter}>l</span>
+          <span className={styles.scrollLetter}>&nbsp;</span>
+          <span className={styles.scrollLetter}>d</span>
+          <span className={styles.scrollLetter}>o</span>
+          <span className={styles.scrollLetter}>w</span>
+          <span className={styles.scrollLetter}>n</span>
+        </div> */}
+      </section>
+      <section className={styles.subHero}>
+        {/* SVG Definitions for gradient */}
+        <svg style={{ position: "absolute", width: 0, height: 0 }}>
+          <defs>
+            <linearGradient id="wave-pattern" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#1c5666" />
+              <stop offset="50%" stopColor="#a3d5d3" />
+              <stop offset="100%" stopColor="#f5ffff" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div className={styles.waveContainer}>
+          <Wave
+            fill="#1c5666"
+            paused={false}
+            className={styles.waveLayer1}
+            options={{
+              height: 0,
+              amplitude: 40,
+              speed: 0.15,
+              points: 5,
+            }}
+          />
+        </div>
+
+        <div className={styles.subHeroInner}>
+          <h2>
+            Find your perfect spot in the sand, where time slows down and the
+            waves write your story
+          </h2>
+          <p>Enjoy your stay in our comfortable and clean rooms.</p>
         </div>
       </section>
-      <section className={styles.nextSection}></section>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import { Link, useLocation } from "react-router-dom";
@@ -11,8 +11,32 @@ export default function Header() {
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
 
+  const [isHeaderVisible, setIsHeaderVisible] = useState(!isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      setIsHeaderVisible(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        // Show header after 100px scroll
+        setIsHeaderVisible(true);
+      } else {
+        setIsHeaderVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
+
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isHeaderVisible ? styles.visible : ""}`}
+    >
       <Link to="/" className={styles.logo}>
         {isFaqPage || isHome ? (
           <img
