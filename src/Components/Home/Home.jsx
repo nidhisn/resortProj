@@ -293,15 +293,6 @@ export default function Home() {
       </section>
       <section className={styles.subHero}>
         {/* SVG Definitions for gradient */}
-        <svg style={{ position: "absolute", width: 0, height: 0 }}>
-          <defs>
-            <linearGradient id="wave-pattern" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#1c5666" />
-              <stop offset="50%" stopColor="#a3d5d3" />
-              <stop offset="100%" stopColor="#f5ffff" />
-            </linearGradient>
-          </defs>
-        </svg>
 
         <div className={styles.waveContainer}>
           <Wave
@@ -309,10 +300,10 @@ export default function Home() {
             paused={false}
             className={styles.waveLayer1}
             options={{
-              height: 0,
+              height: 5,
               amplitude: 40,
               speed: 0.15,
-              points: 5,
+              points: 6,
             }}
           />
         </div>

@@ -206,7 +206,7 @@
   position: relative;
   overflow: visible; /* Allow waves to extend above */
   z-index: 10; /* Ensure it can overlay the hero */
-  margin-top: 0; /* Ensure no top margin */
+  margin-top: 100vh; /* Move sub-hero section below the hero section */
 }
 
 .subHeroInner {
