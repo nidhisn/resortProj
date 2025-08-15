@@ -10,6 +10,7 @@ export default function Header() {
   const isThingsToDo = location.pathname === "/thingstodo";
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
+  const isGallery = location.pathname === "/gallery";
 
   const [isHeaderVisible, setIsHeaderVisible] = useState(!isHome);
 
@@ -38,7 +39,7 @@ export default function Header() {
       className={`${styles.header} ${isHeaderVisible ? styles.visible : ""}`}
     >
       <Link to="/" className={styles.logo}>
-        {isFaqPage || isHome ? (
+        {isFaqPage || isHome || isGallery ? (
           <img
             src={GreenLogo}
             alt="Green Logo"
@@ -55,7 +56,7 @@ export default function Header() {
           <Link
             to="/booking"
             className={`${styles.bookButton} ${
-              isFaqPage || isHome ? styles.bookButtonGreen : ""
+              isFaqPage || isHome || isGallery ? styles.bookButtonGreen : ""
             }`}
           >
             BOOK MY STAY

@@ -18,10 +18,12 @@
   padding: 24px;
   box-sizing: border-box;
   margin-top: -80px; /* Offset the home padding-top to maintain full viewport height */
+  z-index: 1;
 }
 
 .canvas {
-  position: fixed;
+  /* Keep the canvas inside the hero section so it doesn't show in other sections */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,7 +32,8 @@
 }
 
 .staticBg {
-  position: fixed;
+  /* Static background should also be contained inside the hero section */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -200,17 +203,21 @@
 
 /* Sub Hero Section - Beautiful Styling */
 .subHero {
-  background: linear-gradient(to bottom, #1c5666, #a3d5d3);
+  background: linear-gradient(
+    to bottom,
+    #1c5666,
+    #a3d5d3
+  ); /* transparent so hero shows through behind waves */
   padding: 0 24px 200px 24px; /* No top padding - waves start exactly at top */
   text-align: center;
   position: relative;
   overflow: visible; /* Allow waves to extend above */
   z-index: 10; /* Ensure it can overlay the hero */
-  margin-top: 100vh; /* Move sub-hero section below the hero section */
+  padding-top: 250px; /* place sub-hero directly after hero */
 }
 
 .subHeroInner {
-  padding-top: 160px; /* Move top spacing inside */
+  padding-top: 20px; /* Move top spacing inside */
   position: relative;
   z-index: 2;
 }
@@ -218,6 +225,7 @@
 /* Wave Container and Layers */
 .waveContainer {
   position: absolute;
+  background-color: transparent;
   top: -80px; /* Move waves up to start exactly at the top edge */
   left: 0;
   width: 100%;
@@ -283,7 +291,7 @@
   letter-spacing: -0.02em;
   position: relative;
   z-index: 2;
-  margin-top: 40px; /* Add space below the waves */
+  margin-top: 0px; /* Add space below the waves */
 }
 
 .subHero p {
@@ -303,6 +311,142 @@
   display: block;
   margin: 8px 0;
 }
+
+/* Gallery Preview Section */
+.galleryWrapper {
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0 auto 4rem auto;
+  background-color: #1c5666;
+  padding: 4rem 1rem;
+  min-height: 800px;
+}
+
+/* Gallery Button with Glassmorphism Effect */
+.galleryButtonContainer {
+  position: absolute;
+
+  left: 2rem;
+  z-index: 10;
+}
+
+.galleryButton {
+  padding: 12px 28px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: "Gabarito", sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.galleryButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.galleryButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.galleryButton:hover::before {
+  left: 100%;
+}
+
+.galleryButton:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Scroll-triggered horizontal movement keyframes */
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200px);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Animation classes for scroll direction */
+.scrollLeft {
+  animation: moveLeft 0.8s ease-out forwards !important;
+}
+
+.scrollRight {
+  animation: moveRight 0.8s ease-out forwards !important;
+}
+
+/* Gallery container with smooth transitions */
+.gallery {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+  transition: transform 0.3s ease-out; /* Smooth transition for transform changes */
+  padding: 2rem 0;
+  justify-content: center;
+}
+
+/* Individual gallery image styling (tilted cards) */
+.galleryImage {
+  width: 380px;
+  height: 532px;
+  object-fit: cover;
+  transform-origin: center bottom;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  display: block;
+}
+
+.rotateLeft {
+  transform: rotate(-2deg);
+}
+
+.rotateRight {
+  transform: rotate(2deg);
+}
+
+.galleryImage:hover {
+  transform: rotate(0deg) scale(1.02);
+  z-index: 5;
+}
+
+/* Remove the continuous animation keyframes since we want scroll-based movement */
 
 @media (max-width: 1024px) {
   .hero {

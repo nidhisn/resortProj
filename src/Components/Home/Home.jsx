@@ -5,6 +5,8 @@ import styles from "./Home.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Wave from "react-wavify";
+import CircularGallery from "../../blocks/Components/CircularGallery/CircularGallery";
+import ScrollFloat from "../../blocks/TextAnimations/ScrollFloat/ScrollFloat";
 
 // Shaders
 import simulationVertexShader from "../shaders/vertexShader.glsl?raw";
@@ -15,6 +17,37 @@ import rendererFragmentShader from "../shaders/rendererFragmentShader.glsl?raw";
 import backgroundImg from "../../images/sand.jpg";
 import textImg from "../../images/text2.png";
 
+// Gallery images for CircularGallery
+
+import resort6 from "../../images/dummy1.jpg";
+import resort7 from "../../images/dummy2.jpg";
+import resort8 from "../../images/dummy3.jpg";
+import resort9 from "../../images/dummy4.jpg";
+import resort10 from "../../images/dummy5.jpg";
+
+const galleryItems = [
+  {
+    image: resort6,
+    text: "Beach Paradise",
+  },
+  {
+    image: resort7,
+    text: "Sunset Views",
+  },
+  {
+    image: resort8,
+    text: "Ocean Breeze",
+  },
+  {
+    image: resort9,
+    text: "Tropical Dreams",
+  },
+  {
+    image: resort10,
+    text: "Island Life",
+  },
+];
+
 export default function Home() {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
@@ -23,6 +56,7 @@ export default function Home() {
   const buttonsRef = useRef(null);
   const staticBgRef = useRef(null);
   const textImageRef = useRef(null);
+  const galleryRef = useRef(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   // Track viewport size to disable Three.js on small screens
@@ -224,11 +258,115 @@ export default function Home() {
     const textEl = textRef.current;
     const buttonsEl = buttonsRef.current;
     const textPngEl = isSmallScreen ? textImageRef.current : null;
+    const galleryEl = galleryRef.current;
 
     if (backgroundEl) gsap.set(backgroundEl, { opacity: 1 });
     if (textEl) gsap.set(textEl, { opacity: 1 });
     if (buttonsEl) gsap.set(buttonsEl, { opacity: 1 });
     if (textPngEl) gsap.set(textPngEl, { opacity: 1 });
+
+    // Gallery scroll effect - simple direct transform approach
+    if (galleryEl) {
+      let lastScrollY = window.scrollY;
+      let isInGallery = false;
+      let currentPosition = 0; // Track current position: 0 = center, -1 = left, 1 = right
+      let isAnimating = false; // Prevent multiple animations at once
+
+      const handleScroll = () => {
+        if (!galleryEl || !isInGallery) return;
+
+        const currentScrollY = window.scrollY;
+        const scrollDirection = currentScrollY > lastScrollY ? 1 : -1;
+
+        console.log(
+          `Scroll detected: ${
+            scrollDirection === 1 ? "DOWN" : "UP"
+          }, Position: ${currentPosition}, Animating: ${isAnimating}`
+        );
+
+        // Only move if we haven't reached the limits and not currently animating
+        if (scrollDirection === 1 && currentPosition > -2 && !isAnimating) {
+          // Scrolling down: move left
+          currentPosition--;
+          isAnimating = true;
+          console.log(`Moving LEFT to position ${currentPosition}`);
+
+          const galleryContainer = galleryEl.querySelector(
+            `.${styles.gallery}`
+          );
+          if (galleryContainer) {
+            // Calculate the new position
+            const newPosition = currentPosition * 200; // 200px per step
+            galleryContainer.style.transform = `translateX(${newPosition}px)`;
+
+            // Reset animation flag after animation completes
+            setTimeout(() => {
+              isAnimating = false;
+              console.log("Animation completed, can move again");
+            }, 300);
+          }
+        } else if (
+          scrollDirection === -1 &&
+          currentPosition < 0 &&
+          !isAnimating
+        ) {
+          // Scrolling up: move right
+          currentPosition++;
+          isAnimating = true;
+          console.log(`Moving RIGHT to position ${currentPosition}`);
+
+          const galleryContainer = galleryEl.querySelector(
+            `.${styles.gallery}`
+          );
+          if (galleryContainer) {
+            // Calculate the new position
+            const newPosition = currentPosition * 200; // 200px per step
+            galleryContainer.style.transform = `translateX(${newPosition}px)`;
+
+            // Reset animation flag after animation completes
+            setTimeout(() => {
+              isAnimating = false;
+              console.log("Animation completed, can move again");
+            }, 300);
+          }
+        }
+
+        lastScrollY = currentScrollY;
+      };
+
+      // Add scroll listener immediately for testing
+      window.addEventListener("scroll", handleScroll);
+
+      ScrollTrigger.create({
+        trigger: galleryEl,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => {
+          isInGallery = true;
+          console.log("Entered gallery section");
+          // Reset position when entering
+          currentPosition = 0;
+          const galleryContainer = galleryEl.querySelector(
+            `.${styles.gallery}`
+          );
+          if (galleryContainer) {
+            galleryContainer.style.transform = "translateX(0px)";
+          }
+        },
+        onLeave: () => {
+          isInGallery = false;
+          console.log("Left gallery section");
+          // Reset position when leaving
+          currentPosition = 0;
+          const galleryContainer = galleryEl.querySelector(
+            `.${styles.gallery}`
+          );
+          if (galleryContainer) {
+            galleryContainer.style.transform = "translateX(0px)";
+          }
+        },
+      });
+    }
 
     // No pinning - let content scroll naturally
     return () => {
@@ -300,21 +438,62 @@ export default function Home() {
             paused={false}
             className={styles.waveLayer1}
             options={{
-              height: 5,
+              height: 0,
               amplitude: 40,
               speed: 0.15,
-              points: 6,
+              points: 5,
             }}
           />
         </div>
 
         <div className={styles.subHeroInner}>
-          <h2>
+          <ScrollFloat
+            animationDuration={1}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.03}
+          >
             Find your perfect spot in the sand, where time slows down and the
             waves write your story
-          </h2>
+          </ScrollFloat>
+          <h2></h2>
           <p>Enjoy your stay in our comfortable and clean rooms.</p>
         </div>
+      </section>
+
+      {/* Gallery Preview Section */}
+      <section ref={galleryRef} className={styles.galleryWrapper}>
+        <div className={styles.gallery}>
+          {[...galleryItems, ...galleryItems].map((item, index) => (
+            <div key={index} style={{ padding: "1rem" }}>
+              <img
+                src={item.image}
+                alt={item.text || `Gallery ${index + 1}`}
+                className={`${styles.galleryImage} ${
+                  index % 2 === 0 ? styles.rotateLeft : styles.rotateRight
+                }`}
+                width="400"
+                height="562"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Gallery Button - Positioned in top-right corner of gallery section */}
+        <div className={styles.galleryButtonContainer}>
+          <button
+            className={styles.galleryButton}
+            onClick={() => navigate("/gallery")}
+          >
+            Gallery
+          </button>
+        </div>
+      </section>
+
+      {/* Adding a dummy section below to ensure there's enough scroll space */}
+      <section className={styles.amenitiesSection}>
+        <h1>what we offer</h1>
       </section>
     </div>
   );
