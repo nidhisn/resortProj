@@ -320,13 +320,14 @@
   background-color: #1c5666;
   padding: 4rem 1rem;
   min-height: 800px;
+  position: relative;
 }
 
 /* Gallery Button with Glassmorphism Effect */
 .galleryButtonContainer {
   position: absolute;
-
   left: 2rem;
+  bottom: 2rem;
   z-index: 10;
 }
 
@@ -446,132 +447,217 @@
   z-index: 5;
 }
 
-/* Remove the continuous animation keyframes since we want scroll-based movement */
+/* Responsive Design - Large Desktop */
+@media (min-width: 1400px) {
+  .galleryWrapper {
+    padding: 5rem 2rem;
+    min-height: 900px;
+  }
 
-@media (max-width: 1024px) {
-  .hero {
-    padding: 20px;
+  .gallery {
+    gap: 4rem;
   }
-  .introText {
-    max-width: min(92vw, 760px);
+
+  .galleryImage {
+    width: 420px;
+    height: 588px;
   }
-  .actionButton {
-    height: 50px;
-    font-size: 1rem;
+
+  .galleryButton {
+    font-size: 1.8rem;
+    padding: 14px 32px;
   }
-  .subHero {
-    padding: 0 20px 160px 20px;
+}
+
+/* Responsive Design - Desktop */
+@media (max-width: 1399px) and (min-width: 1024px) {
+  .galleryWrapper {
+    padding: 4rem 1.5rem;
+    min-height: 800px;
   }
-  .subHeroInner {
-    padding-top: 140px;
+
+  .gallery {
+    gap: 3.5rem;
   }
-  .scrollDownText {
-    right: 30px;
+
+  .galleryImage {
+    width: 380px;
+    height: 532px;
   }
-  .scrollLetter {
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .galleryWrapper {
+    padding: 3rem 1rem;
+    min-height: 700px;
+  }
+
+  .gallery {
+    gap: 2.5rem;
+  }
+
+  .galleryImage {
+    width: 320px;
+    height: 448px;
+  }
+
+  .galleryButton {
+    font-size: 1.5rem;
+    padding: 10px 24px;
+  }
+
+  .galleryButtonContainer {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+/* Responsive Design - Mobile Large */
+@media (max-width: 767px) and (min-width: 480px) {
+  .galleryWrapper {
+    padding: 2rem 0.5rem;
+    min-height: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .gallery {
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  .galleryImage {
+    width: 280px;
+    height: 392px;
+  }
+
+  .galleryButton {
+    font-size: 1.3rem;
+    padding: 8px 20px;
+  }
+
+  .galleryButtonContainer {
+    left: 1rem;
+    bottom: 1rem;
+  }
+}
+
+/* Responsive Design - Mobile Small */
+@media (max-width: 479px) {
+  .galleryWrapper {
+    padding: 1.5rem 0.25rem;
+    min-height: 500px;
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery {
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .galleryImage {
+    width: 240px;
+    height: 336px;
+  }
+
+  .galleryButton {
     font-size: 1.1rem;
+    padding: 6px 16px;
+  }
+
+  .galleryButtonContainer {
+    left: 0.75rem;
+    bottom: 0.75rem;
   }
 }
 
-@media (max-width: 768px) {
-  .hero {
-    justify-content: flex-end;
-    align-items: center;
-    padding: 18px;
+/* Responsive Design - Extra Small Mobile */
+@media (max-width: 359px) {
+  .galleryWrapper {
+    padding: 1rem 0.125rem;
+    min-height: 400px;
+    margin-bottom: 1rem;
   }
-  .introText {
-    text-align: center;
-    font-size: clamp(1.1rem, 4.2vw, 1.6rem);
-    padding: 10px 14px;
+
+  .gallery {
+    gap: 1rem;
+    padding: 0.25rem 0;
   }
-  .textImage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(80vw, 520px);
-    margin: 0;
+
+  .galleryImage {
+    width: 200px;
+    height: 280px;
   }
-  .buttonContainer {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 480px;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .actionButton {
-    width: 50%;
-    min-width: 0;
-    height: 44px;
-    font-size: 0.95rem;
-    padding: 0 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  }
-  .subHero {
-    padding: 0 18px 140px 18px;
-  }
-  .subHeroInner {
-    padding-top: 120px;
-  }
-  .subHero h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 24px;
-  }
-  .subHero p {
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  }
-  .scrollDownText {
-    right: 20px;
-    gap: 3px;
-  }
-  .scrollLetter {
+
+  .galleryButton {
     font-size: 1rem;
+    padding: 5px 14px;
+  }
+
+  .galleryButtonContainer {
+    left: 0.5rem;
+    bottom: 0.5rem;
   }
 }
 
-@media (max-width: 500px) {
-  .hero {
-    justify-content: flex-end;
-    align-items: center;
-    padding: 16px;
-  }
-  .introText {
-    font-size: 1.25rem;
-    text-align: center;
+/* Landscape Mobile Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .galleryWrapper {
+    padding: 1rem 0.5rem;
+    min-height: 350px;
   }
 
-  .buttonContainer {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-top: 12px;
-    bottom: auto;
+  .gallery {
+    gap: 1.5rem;
+    padding: 0.5rem 0;
   }
-  .actionButton {
-    width: 55%;
-    height: 40px;
-    font-size: 0.9rem;
-    padding: 0 14px;
+
+  .galleryImage {
+    width: 220px;
+    height: 308px;
   }
-  .subHero {
-    padding: 0 16px 100px 16px;
+
+  .galleryButton {
+    font-size: 1.2rem;
+    padding: 6px 18px;
   }
-  .subHeroInner {
-    padding-top: 100px;
+
+  .galleryButtonContainer {
+    left: 0.75rem;
+    bottom: 0.75rem;
   }
-  .subHero h2 {
-    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
-    margin-bottom: 20px;
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .galleryImage:hover {
+    transform: none;
   }
-  .subHero p {
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
+
+  .galleryButton:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
   }
-  .scrollDownText {
-    right: 16px;
-    gap: 2px;
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .galleryImage {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
-  .scrollLetter {
-    font-size: 0.9rem;
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .gallery,
+  .galleryImage,
+  .galleryButton {
+    transition: none;
+  }
+
+  .scrollLeft,
+  .scrollRight {
+    animation: none;
   }
 }
