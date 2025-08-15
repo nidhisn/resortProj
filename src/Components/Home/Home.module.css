@@ -217,7 +217,7 @@
 }
 
 .subHeroInner {
-  padding-top: 20px; /* Move top spacing inside */
+  padding-top: 10px; /* Move top spacing inside */
   position: relative;
   z-index: 2;
 }

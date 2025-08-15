@@ -16,13 +16,20 @@ import Faqs from "./Components/Faqs/Faqs";
 import Gallery from "./Components/Gallery/Gallery";
 import LoaderWrapper from "./Components/Loader/LoaderWrapper"; // <-- import wrapper
 import "./App.css";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import SmoothScrollProvider from "./SmoothScrollProvider";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function App() {
   const footerRef = useRef(null);
   const location = useLocation();
 
   const shouldShowFooter = location.pathname !== "/thingstodo";
+
+  useEffect(() => {
+    // Ensure ScrollTrigger recalculates positions on route changes
+    ScrollTrigger.refresh();
+  }, [location.pathname]);
 
   return (
     <div className="app">
@@ -48,9 +55,11 @@ function App() {
 
 function RootApp() {
   return (
-    <Router>
-      <App />
-    </Router>
+    <SmoothScrollProvider>
+      <Router>
+        <App />
+      </Router>
+    </SmoothScrollProvider>
   );
 }
 
