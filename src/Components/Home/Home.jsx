@@ -4,9 +4,6 @@ import * as THREE from "three";
 import styles from "./Home.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Wave from "react-wavify";
-import CircularGallery from "../../blocks/Components/CircularGallery/CircularGallery";
-import ScrollFloat from "../../blocks/TextAnimations/ScrollFloat/ScrollFloat";
 
 // Shaders
 import simulationVertexShader from "../shaders/vertexShader.glsl?raw";
@@ -431,7 +428,7 @@ export default function Home() {
       </section>
       <section className={styles.subHero}>
         {/* SVG Definitions for gradient */}
-
+        {/*
         <div className={styles.waveContainer}>
           <Wave
             fill="#1c5666"
@@ -445,19 +442,14 @@ export default function Home() {
             }}
           />
         </div>
+        */}
 
         <div className={styles.subHeroInner}>
-          <ScrollFloat
-            animationDuration={1}
-            ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
-            stagger={0.03}
-          >
+          <h2 className={styles.subheroIntro}>
             Find your perfect spot in the sand, where time slows down and the
             waves write your story
-          </ScrollFloat>
-          <h2></h2>
+          </h2>
+
           <p>Enjoy your stay in our comfortable and clean rooms.</p>
         </div>
       </section>
@@ -473,8 +465,8 @@ export default function Home() {
                 className={`${styles.galleryImage} ${
                   index % 2 === 0 ? styles.rotateLeft : styles.rotateRight
                 }`}
-                width="400"
-                height="562"
+                width="350"
+                height="378"
               />
             </div>
           ))}
@@ -491,10 +483,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Adding a dummy section below to ensure there's enough scroll space */}
-      <section className={styles.amenitiesSection}>
-        <h1>what we offer</h1>
+      {/* Scrolling About Text Section 
+      <section className={styles.scrollingAboutSection}>
+        <ScrollVelocity
+          texts={["Dive into our offerings"]}
+          className="custom-scroll-text"
+        />
+        <AmenitiesSection />
       </section>
+      */}
     </div>
   );
 }
