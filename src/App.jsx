@@ -24,9 +24,7 @@ function App() {
   const footerRef = useRef(null);
   const location = useLocation();
 
-  const shouldShowFooter = !["/thingstodo", "/gallery"].includes(
-    location.pathname
-  );
+  const shouldShowFooter = !["/gallery"].includes(location.pathname);
 
   useEffect(() => {
     // Ensure ScrollTrigger recalculates positions on route changes

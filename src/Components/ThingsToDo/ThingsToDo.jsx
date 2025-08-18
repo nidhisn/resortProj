@@ -7,7 +7,7 @@ import fishing from "../../images/fishing.jpg";
 import kite from "../../images/kitesurfing.jpg";
 import kayaking from "../../images/kayaking.jpg";
 import dolphin from "../../images/dolphin.jpg";
-import kayakingIcon from "../../images/kayakingActivityy.gif";
+// import kayakingIcon from "../../images/kayakingActivityy.gif"; // Disabled: thread GIF
 import theResortImage from "../../images/TheResort.jpg";
 import theIslandImage from "../../images/island.jpg";
 
@@ -52,9 +52,9 @@ const activities = [
 
 const ThingsToDo = () => {
   const bgRef = useRef(null);
-  const threadSvgRef = useRef(null);
-  const threadPathRef = useRef(null);
-  const kayakingIconRef = useRef(null);
+  // const threadSvgRef = useRef(null); // Disabled: thread SVG
+  // const threadPathRef = useRef(null); // Disabled: thread SVG path
+  // const kayakingIconRef = useRef(null); // Disabled: thread GIF icon
   const heroRef = useRef(null);
   const heroContentRef = useRef(null);
   const subheadingRef = useRef(null);
@@ -105,135 +105,21 @@ const ThingsToDo = () => {
     };
   }, []);
 
-  // Scroll thread growth animation with SVG path drawing and icon movement
-  useEffect(() => {
-    if (isSmallScreen) return;
-    const threadSvg = threadSvgRef.current;
-    const threadPath = threadPathRef.current;
-    const kayakingIconElement = kayakingIconRef.current;
-    const subheadingElement = subheadingRef.current;
-    const lastActivityElement = lastActivityRef.current;
-
-    if (
-      !threadSvg ||
-      !threadPath ||
-      !kayakingIconElement ||
-      !subheadingElement ||
-      !lastActivityElement
-    ) {
-      console.log("Refs for thread animation not available. Skipping.");
-      return;
-    }
-
-    let animationFrameId = null;
-    let totalPathLength = 0;
-
-    const initializePath = () => {
-      try {
-        totalPathLength = threadPath.getTotalLength();
-        if (totalPathLength === 0) {
-          console.warn(
-            "Path length is 0. SVG path might be invalid or not rendered yet."
-          );
-          return false;
-        }
-        threadPath.style.strokeDasharray = totalPathLength;
-        threadPath.style.strokeDashoffset = totalPathLength;
-        return true;
-      } catch (error) {
-        console.error("Error getting SVG path length:", error);
-        return false;
-      }
-    };
-
-    const getThreadStartDocY = () => {
-      const startOffset = 50; // start a bit after the subheading
-      return (
-        subheadingElement.getBoundingClientRect().bottom +
-        window.scrollY +
-        startOffset
-      );
-    };
-
-    const getThreadStopDocY = () => {
-      const lastActivityBottom =
-        lastActivityElement.getBoundingClientRect().bottom + window.scrollY;
-      const iconFinalPositionOffset = 200; // how far below the last activity the icon stops
-      const extraSlowdownOffset = window.innerHeight * 5.5; // **THIS MAKES IT SLOWER**
-      return lastActivityBottom + iconFinalPositionOffset + extraSlowdownOffset;
-    };
-
-    let threadStartDocY = getThreadStartDocY();
-    let threadStopDocY = getThreadStopDocY();
-
-    const handleScroll = () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(() => {
-        if (totalPathLength === 0 && !initializePath()) return;
-
-        const currentScrollY = window.scrollY;
-
-        // Smooth normalized progress (0–1)
-        let progress =
-          (currentScrollY - threadStartDocY) /
-          (threadStopDocY - threadStartDocY);
-        progress = Math.max(0, Math.min(1, progress)); // clamp
-
-        // Update SVG path drawing
-        const offset = totalPathLength - totalPathLength * progress;
-        threadPath.style.strokeDashoffset = offset;
-
-        // Move kayaking icon along the path
-        // Move and rotate kayaking icon along the path
-        if (kayakingIconElement) {
-          const pathLengthAtProgress = totalPathLength * progress;
-
-          // Get current point
-          const point = threadPath.getPointAtLength(pathLengthAtProgress);
-
-          // Get a slightly ahead point to calculate angle
-          const delta = 1; // small offset for angle calc
-          const nextPoint = threadPath.getPointAtLength(
-            Math.min(totalPathLength, pathLengthAtProgress + delta)
-          );
-
-          // Calculate angle between points
-          const dx = nextPoint.x - point.x;
-          const dy = nextPoint.y - point.y;
-          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-
-          // Position and rotate icon
-          kayakingIconElement.setAttribute("x", point.x - 61);
-          kayakingIconElement.setAttribute("y", point.y - 61);
-          kayakingIconElement.setAttribute(
-            "transform",
-            `rotate(${angle}, ${point.x}, ${point.y})`
-          );
-        }
-      });
-    };
-
-    const handleRecalculate = () => {
-      threadStartDocY = getThreadStartDocY();
-      threadStopDocY = getThreadStopDocY();
-      initializePath();
-      handleScroll();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleRecalculate);
-
-    const initialRenderTimeout = setTimeout(() => {
-      handleRecalculate();
-    }, 100);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleRecalculate);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      clearTimeout(initialRenderTimeout);
-    };
-  }, [isSmallScreen]);
+  /*
+   * Thread + GIF animation temporarily disabled.
+   * Keeping the implementation commented for future reactivation.
+   *
+   * // Scroll thread growth animation with SVG path drawing and icon movement
+   * useEffect(() => {
+   *   if (isSmallScreen) return;
+   *   const threadSvg = threadSvgRef.current;
+   *   const threadPath = threadPathRef.current;
+   *   const kayakingIconElement = kayakingIconRef.current;
+   *   const subheadingElement = subheadingRef.current;
+   *   const lastActivityElement = lastActivityRef.current;
+   *   // ...rest of implementation
+   * }, [isSmallScreen]);
+   */
 
   return (
     <div className={styles.container}>
@@ -245,47 +131,41 @@ const ThingsToDo = () => {
           <span ref={subheadingRef} className={styles.subheading}>
             Scroll Your Way to Adventure
           </span>
-          {!isSmallScreen && (
-            <div className={styles.threadWrapper}>
-              <svg
-                ref={threadSvgRef}
-                className={styles.threadSvg}
-                viewBox="0 0 100 2500" // Increased viewBox height to give more room for the path
-                preserveAspectRatio="xMidYMin slice"
-              >
-                <defs>
-                  <linearGradient
-                    id="threadGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="0%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#fff" />
-                    <stop offset="88%" stopColor="#b9e6f9" />
-                    <stop offset="100%" stopColor="transparent" />
-                  </linearGradient>
-                </defs>
-                <path
-                  ref={threadPathRef}
-                  className={styles.threadPath}
-                  // Significantly extended path. You might need to adjust the Y values (e.g., 2800, 3000, 3200, 3400)
-                  // further based on the actual height of your content.
-                  d="M 50 0 C 1 181 117 190 50 300 S 72 429 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400"
-                />
-                {/* SVG <image> for the kayaking icon */}
-                <image
-                  ref={kayakingIconRef}
-                  href={kayakingIcon} // Use href for SVG image, not src
-                  x="0" // Will be updated by JS
-                  y="0" // Will be updated by JS
-                  width="200" // Set the actual width of your icon - changed to 122 from 200 to match the -61 offset
-                  height="200" // Set the actual height of your icon - changed to 122 from 200
-                  className={styles.kayakingIcon} // Add a class for CSS styling
-                />
-              </svg>
-            </div>
-          )}
+          {/*
+            Thread + GIF temporarily disabled. Keeping markup for future use.
+            {!isSmallScreen && (
+              <div className={styles.threadWrapper}>
+                <svg
+                  ref={threadSvgRef}
+                  className={styles.threadSvg}
+                  viewBox="0 0 100 2500"
+                  preserveAspectRatio="xMidYMin slice"
+                >
+                  <defs>
+                    <linearGradient id="threadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#fff" />
+                      <stop offset="88%" stopColor="#b9e6f9" />
+                      <stop offset="100%" stopColor="transparent" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    ref={threadPathRef}
+                    className={styles.threadPath}
+                    d="M 50 0 C 1 181 117 190 50 300 S 72 429 38 508 S 108 551 50 900 S 70 1100 50 1200 S -81 1219 50 1500 S 70 1700 50 1800 S 30 2000 50 2100 S 70 2300 50 2400"
+                  />
+                  <image
+                    ref={kayakingIconRef}
+                    href={kayakingIcon}
+                    x="0"
+                    y="0"
+                    width="200"
+                    height="200"
+                    className={styles.kayakingIcon}
+                  />
+                </svg>
+              </div>
+            )}
+          */}
         </div>
       </div>
 
@@ -309,9 +189,9 @@ const ThingsToDo = () => {
         ))}
       </div>
 
-      {/* NEW: Explore More Section */}
+      {/* NEW: Explore More Section 
       <div className={styles.exploreMoreSection}>
-        {/* Box 1: The Resort */}
+       
         <Link to="/resort" className={styles.exploreBox}>
           <img src={theResortImage} alt="The Resort" />
           <div className={styles.exploreTextOverlay}>
@@ -319,16 +199,17 @@ const ThingsToDo = () => {
           </div>
         </Link>
 
-        {/* Box 2: Island Tour  */}
+       
         <Link to="/exploretheisland" className={styles.exploreBox}>
           <img src={theIslandImage} alt="Island Tour" />
-          {/* Changed alt text to match "Island tour" */}
+          
           <div className={styles.exploreTextOverlay}>
             <h2>Island tour</h2>
-            {/* Changed text to match your desired "Island tour" */}
+            
           </div>
         </Link>
       </div>
+*/}
     </div>
   );
 };
