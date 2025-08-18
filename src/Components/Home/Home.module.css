@@ -275,7 +275,7 @@ h2.subheroIntro {
 .galleryWrapper {
   max-width: 100%;
   overflow: hidden;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto;
   background: #b4d7d8;
   padding: 1rem 1rem;
   position: relative;
@@ -473,7 +473,7 @@ h2.subheroIntro {
   .galleryWrapper {
     padding: 2rem 0.5rem;
     min-height: 600px;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
   }
 
   .gallery {
@@ -502,7 +502,7 @@ h2.subheroIntro {
   .galleryWrapper {
     padding: 1.5rem 0.25rem;
     min-height: 500px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
   }
 
   .gallery {
@@ -531,7 +531,7 @@ h2.subheroIntro {
   .galleryWrapper {
     padding: 1rem 0.125rem;
     min-height: 400px;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .gallery {
