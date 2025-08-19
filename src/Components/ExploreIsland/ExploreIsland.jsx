@@ -24,7 +24,6 @@ export default function ExploreIsland() {
         "Agatti, often called the gateway to Lakshadweep, is famous for its stunning lagoon and is the only island with an airport. The approach by air offers breathtaking views of the turquoise waters and coral reefs. Just 459 km from Kochi, Agatti is easily accessible and offers a comfortable tourist complex with modern amenities. Its lagoon, spread over 17.5 sq km, is rich with vibrant corals and colorful reef fish. Fishing is the main livelihood here, along with coir and copra production.",
       image: genericIsland,
     },
-
     {
       name: "Kadmat Island",
       tagline: "Island",
@@ -46,7 +45,6 @@ export default function ExploreIsland() {
         "Kavaratti, the administrative capital of Lakshadweep, is the most developed island and home to 52 mosques, with the Ujra Mosque being the most beautiful. The calm lagoon is perfect for swimming, snorkeling, and water sports, while glass-bottomed boat rides reveal its vibrant marine life. Visitors can also explore the marine aquarium, enjoy kayaking, windsurfing, or sailing, and experience scuba diving at the Dolphin Dive Centre. With sun-drenched beaches and tourist packages like Coral Reef and Taratashi, Kavaratti offers a rich blend of culture, adventure, and natural beauty.",
       image: genericIsland,
     },
-
     {
       name: "Minicoy Island",
       tagline: "Island",
@@ -54,7 +52,6 @@ export default function ExploreIsland() {
         "Minicoy, located about 200 km south of the northern Lakshadweep group, is the second largest island and distinct for its culture, language, and traditions. Known for its vast lagoon and the nearby islet of Viringili, the island is home to 11 villages, each led by a Bodukaka, or village elder. Minicoy is celebrated for its folk dance Lava, colorful race boats called Jahadhoni, and a strong seafaring community. Attractions include the 300-foot British-era lighthouse, pristine beaches with bathing huts, and opportunities for water sports. Tuna fishing and canning are important industries, and visitors can stay in tourist cottages or the 20-bed tourist home. Minicoy is included in the Coral Reef and Swaying Palm packages.",
       image: genericIsland,
     },
-
     {
       name: "Bangaram",
       tagline: "Island",
@@ -63,6 +60,20 @@ export default function ExploreIsland() {
       image: genericIsland,
     },
   ];
+
+  // Responsive toggle for mobile behavior
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mql.matches);
+    if (mql.addEventListener) mql.addEventListener("change", onChange);
+    else mql.addListener(onChange);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener("change", onChange);
+      else mql.removeListener(onChange);
+    };
+  }, []);
 
   const postcardsSectionRef = useRef(null);
   const stickyWrapperRef = useRef(null);
@@ -76,13 +87,17 @@ export default function ExploreIsland() {
   const [containerHeight, setContainerHeight] = useState(undefined);
 
   useEffect(() => {
+    if (isMobile) {
+      setContainerHeight(undefined);
+      return; // no sticky math on mobile
+    }
     const wrap = stickyWrapperRef.current;
     const track = motionTrackRef.current;
     if (!wrap || !track) return;
 
     const recalc = () => {
       const dist = Math.max(0, track.scrollWidth - wrap.clientWidth);
-      const safeDist = dist > 0 ? dist : 1; // ensure positive distance for mapping
+      const safeDist = dist > 0 ? dist : 1;
       setScrollDistance(safeDist);
       setContainerHeight(wrap.clientHeight + safeDist);
     };
@@ -98,7 +113,7 @@ export default function ExploreIsland() {
       window.removeEventListener("load", recalc);
       window.removeEventListener("resize", recalc);
     };
-  }, []);
+  }, [isMobile]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
@@ -221,15 +236,22 @@ export default function ExploreIsland() {
           </div>
         </div>
       </div>
+
       {/* Horizontal Postcards Section */}
       <section
         className={styles.postcardsSection}
         ref={postcardsSectionRef}
-        style={{ height: containerHeight ? `${containerHeight}px` : "100vh" }}
+        style={{
+          height: isMobile
+            ? "auto"
+            : containerHeight
+            ? `${containerHeight}px`
+            : "100vh",
+        }}
       >
         <div className={styles.stickyWrapper} ref={stickyWrapperRef}>
           <motion.div
-            style={{ x }}
+            style={{ x: isMobile ? 0 : x }}
             className={styles.motionTrack}
             ref={motionTrackRef}
           >

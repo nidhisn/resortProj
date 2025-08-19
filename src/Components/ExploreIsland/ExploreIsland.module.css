@@ -272,6 +272,10 @@
     padding: 2rem 1.25rem;
     margin: 1.25rem;
   }
+  .headingTitle {
+    font-size: 2.8rem;
+    line-height: 3.2rem;
+  }
   .mapWrapper {
     max-width: 720px;
   }
@@ -286,6 +290,19 @@
   }
   .zoomControls {
     right: 0.75rem;
+  }
+  .motionTrack {
+    height: 64vh;
+    gap: 28px;
+  }
+  .postcard {
+    width: 80vw;
+  }
+  .postcardImage {
+    flex-basis: 50%;
+  }
+  .postcardText {
+    flex-basis: 50%;
   }
 }
 
@@ -404,8 +421,7 @@
   min-width: 520px;
   height: 100%;
   flex-shrink: 0;
-  border-radius: 20px;
-  box-shadow: 0 14px 32px rgba(28, 86, 102, 0.15);
+
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -481,6 +497,10 @@
     height: auto;
     align-items: stretch;
   }
+  .headingTitle {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
   .postcard {
     width: 90vw;
     flex-direction: column;
@@ -491,9 +511,89 @@
     flex-direction: column;
   }
   .postcardImage {
-    height: 42vh;
+    height: 22vh;
   }
   .postcardText {
-    min-height: 36vh;
+    min-height: 26vh;
+  }
+  .textContainer {
+    padding: 1rem 1rem;
+  }
+  .postcardTagline {
+    font-size: 0.75rem;
+  }
+  .postcardTitle {
+    font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+    margin: 4px 0 8px 0;
+  }
+  .postcardDesc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+/* Mobile: vertical list behavior */
+@media (max-width: 768px) {
+  .postcardsSection {
+    position: static;
+    height: auto;
+  }
+  .stickyWrapper {
+    position: static;
+    height: auto;
+    align-items: stretch;
+    overflow: visible;
+  }
+  .motionTrack {
+    display: block;
+    height: auto;
+    gap: 0;
+    padding: 0 1rem;
+    transform: none !important;
+  }
+  .postcardHeading {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 1rem;
+    height: auto;
+    padding: 0 1rem;
+  }
+  .postcard {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 1rem 0;
+  }
+}
+
+/* Extra small phones: further reduce image height */
+@media (max-width: 420px) {
+  .postcardImage {
+    height: 18vh;
+  }
+  .postcardText {
+    min-height: 22vh;
+  }
+  .headingTitle {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+  .postcardDesc {
+    font-size: 0.9rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .postcardImage {
+    height: 16vh;
+  }
+  .postcardText {
+    min-height: 20vh;
+  }
+  .postcardTitle {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+  .textContainer {
+    padding: 0.875rem 0.875rem;
   }
 }
