@@ -11,6 +11,7 @@ import Footer from "./Components/Footer/Footer";
 import Menu from "./Components/Menu/Menu";
 import Resort from "./Components/Resort/Resort";
 import Home from "./Components/Home/Home";
+import HeroSection from "./Components/HeroSection/HeroSection";
 import Book from "./Components/Book/Book";
 import Faqs from "./Components/Faqs/Faqs";
 import Gallery from "./Components/Gallery/Gallery";
