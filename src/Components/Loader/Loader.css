@@ -19,17 +19,17 @@
 .loader-solo-container {
   /* Styles for each individual wave container */
   position: relative;
-  width: clamp(100px, 28vw, 220px);
+  width: clamp(80px, 18vw, 160px);
   aspect-ratio: 140 / 26;
   height: auto;
-  margin-bottom: clamp(4px, 1.2vh, 10px); /* Space between the waves */
+  margin-bottom: clamp(3px, 0.9vh, 8px); /* Space between the waves */
 }
 
 .loader-path,
 .loader-static-path {
   fill: none;
   stroke: #1c5666; /* Adjust color as needed */
-  stroke-width: 2;
+  stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -89,20 +89,20 @@
 @media (max-width: 480px) {
   .loader-path,
   .loader-static-path {
-    stroke-width: 1.4;
+    stroke-width: 1.2;
   }
   .loader-solo-container {
-    width: clamp(90px, 48vw, 160px);
+    width: clamp(70px, 44vw, 130px);
   }
 }
 
 @media (min-width: 1024px) {
   .loader-path,
   .loader-static-path {
-    stroke-width: 2.2;
+    stroke-width: 1.8;
   }
   .loader-solo-container {
-    width: clamp(140px, 18vw, 240px);
+    width: clamp(110px, 12vw, 180px);
   }
 }
 

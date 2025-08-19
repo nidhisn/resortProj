@@ -79,7 +79,7 @@ const Menu = () => {
               className={`${styles.link} ${styles.subLink}`}
               onClick={() => setOpen(false)}
             >
-              FAQ
+              FAQs
             </Link>
             <Link
               to="/booking"
