@@ -4,13 +4,21 @@
   background: linear-gradient(135deg, #f8fafc 0%, #e8f4f8 50%, #f0f8fa 100%);
   color: #1c5666;
   font-family: "Helvetica Neue", sans-serif;
+  padding-top: clamp(56px, 12vw, 88px);
 }
 
 /* Header */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+}
 .header img {
-  width: 100%;
+  width: clamp(220px, 55vw, 760px);
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 
 /* Intro Paragraph */
