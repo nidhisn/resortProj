@@ -236,20 +236,34 @@
   .activity {
     flex-direction: column !important;
   }
+  .text {
+    max-width: 90vw;
+    padding: 0.5rem 0;
+  }
+  .text h2 {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 1px;
+  }
+  .text p {
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 1px;
+  }
 }
 @media (max-width: 600px) {
   .hero {
     min-height: 420px;
   }
   .heading {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .subheading {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .image {
-    width: 96vw;
-    height: 180px;
+    width: 94vw;
+    height: 160px;
   }
   .threadWrapper {
     min-height: 80px;
@@ -257,6 +271,20 @@
   .text {
     font-size: 1rem;
     max-width: 100%;
+    padding: 0.25rem 0;
+  }
+  .text h2 {
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: 0.5px;
+  }
+  .text p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+  }
+  .oceanSection {
+    padding: 3.5rem 0.75rem;
   }
 }
 
