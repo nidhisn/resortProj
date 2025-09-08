@@ -50,14 +50,14 @@ export default function Header() {
         )}
       </Link>
 
-      {/* ✅ Only show the button if NOT on the booking page */}
+      {/* Hide header CTA on small screens for Resort; keep on others */}
       {location.pathname !== "/booking" && (
         <nav className={styles.nav}>
           <Link
             to="/booking"
             className={`${styles.bookButton} ${
               isFaqPage || isHome || isGallery ? styles.bookButtonGreen : ""
-            }`}
+            } ${location.pathname === "/resort" ? styles.hideOnMobile : ""}`}
           >
             BOOK MY STAY
           </Link>

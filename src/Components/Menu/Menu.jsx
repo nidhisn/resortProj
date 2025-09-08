@@ -10,6 +10,7 @@ const Menu = () => {
   const isFaqPage = location.pathname === "/faqs";
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
+  const isResort = location.pathname === "/resort";
 
   // Detect when HeroSection is the active home (mobile/tablet with no fine pointer)
   const [isHeroHome, setIsHeroHome] = useState(false);
@@ -47,7 +48,11 @@ const Menu = () => {
           isBookingPage || isFaqPage || isExplore || isHome
             ? styles.bookingColor
             : ""
-        } ${isHome && isHeroHome ? styles.heroMobilePos : ""}`}
+        } ${
+          (isHome && isHeroHome) || (isResort && isHeroHome)
+            ? styles.heroMobilePos
+            : ""
+        }`}
       >
         <div
           className={`${styles.MenuText} ${
@@ -55,7 +60,9 @@ const Menu = () => {
               ? styles.bookingText
               : ""
           } ${isOpen ? styles.hidden : ""} ${
-            isHome && isHeroHome ? styles.heroMobileHideText : ""
+            (isHome && isHeroHome) || (isResort && isHeroHome)
+              ? styles.heroMobileHideText
+              : ""
           }`}
         >
           MENU
@@ -65,7 +72,7 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            isHome && isHeroHome
+            (isHome && isHeroHome) || (isResort && isHeroHome)
               ? isOpen
                 ? "#1c5666"
                 : "#FFFFFF"
@@ -85,11 +92,13 @@ const Menu = () => {
         {/* CLOSE BUTTON */}
         <div
           className={`${styles.closeButton} ${
-            isHome && isHeroHome ? styles.heroMobileHideText : ""
+            (isHome && isHeroHome) || (isResort && isHeroHome)
+              ? styles.heroMobileHideText
+              : ""
           }`}
           onClick={() => setOpen(false)}
         >
-          <span className={styles.closeText}>CLOSE</span>
+          <span className={styles.closeText}></span>
         </div>
         <div className={styles.linkContainer}>
           <Link
