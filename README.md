@@ -23,7 +23,7 @@ This project is built with **React.js**, offering smooth page transitions and a 
 
 ---
 
-## 🌍 Live Demo  
+## 🌍 Live Demo  :
 Check out the deployed site here:  
 🔗 [Sand bank resort](https://sandbankresort.com/)
  
