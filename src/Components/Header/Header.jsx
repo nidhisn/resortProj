@@ -77,7 +77,9 @@ export default function Header() {
             className={`${styles.bookButton} ${
               isFaqPage || isHome || isGallery ? styles.bookButtonGreen : ""
             } ${
-              isResort || isThingsToDo || isExplore ? styles.hideOnMobile : ""
+              isResort || isThingsToDo || isExplore || isGallery
+                ? styles.hideOnMobile
+                : ""
             }`}
           >
             BOOK MY STAY

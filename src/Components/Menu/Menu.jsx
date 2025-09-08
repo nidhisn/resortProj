@@ -12,6 +12,7 @@ const Menu = () => {
   const isHome = location.pathname === "/";
   const isResort = location.pathname === "/resort";
   const isThings = location.pathname === "/thingstodo";
+  const isGallery = location.pathname === "/gallery";
 
   // Detect when HeroSection is the active home (mobile/tablet with no fine pointer)
   const [isHeroHome, setIsHeroHome] = useState(false);
@@ -56,7 +57,7 @@ const Menu = () => {
           (isExplore && isHeroHome)
             ? styles.heroMobilePos
             : ""
-        }`}
+        } ${isGallery ? styles.galleryPos : ""}`}
       >
         <div
           className={`${styles.MenuText} ${
@@ -79,10 +80,12 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            (isHome && isHeroHome) ||
-            (isResort && isHeroHome) ||
-            (isThings && isHeroHome) ||
-            (isExplore && isHeroHome)
+            isGallery
+              ? "#1c5666"
+              : (isHome && isHeroHome) ||
+                (isResort && isHeroHome) ||
+                (isThings && isHeroHome) ||
+                (isExplore && isHeroHome)
               ? isOpen
                 ? "#1c5666"
                 : "#FFFFFF"

@@ -18,6 +18,8 @@
   transform: none;
 }
 
+/* Gallery page: top-right only on mobile/tablet (no override on desktop) */
+
 .MenuText {
   color: white;
   writing-mode: vertical-rl;
@@ -158,6 +160,12 @@
     left: auto;
     transform: none;
   }
+  .galleryPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
 }
 
 @media (max-width: 992px) {
@@ -166,6 +174,12 @@
   }
   /* Ensure top-right on HeroSection tablets */
   .hamburgerWrapper.heroMobilePos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  .galleryPos {
     top: 12px;
     right: 12px;
     left: auto;
@@ -201,6 +215,16 @@
     right: 12px;
     left: auto;
     transform: none;
+  }
+  .galleryPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  /* Hide the vertical MENU label on Gallery for small screens */
+  .galleryPos .MenuText {
+    display: none !important;
   }
   .MenuText {
     font-size: 0.65rem;
