@@ -478,7 +478,7 @@ export default function Home() {
             className={styles.galleryButton}
             onClick={() => navigate("/gallery")}
           >
-            Gallery
+            GALLERY
           </button>
         </div>
       </section>

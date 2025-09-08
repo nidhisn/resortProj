@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Squash as Hamburger } from "hamburger-react";
 import styles from "./Menu.module.css";
@@ -11,6 +11,35 @@ const Menu = () => {
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
 
+  // Detect when HeroSection is the active home (mobile/tablet with no fine pointer)
+  const [isHeroHome, setIsHeroHome] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mqDesktop = window.matchMedia("(min-width: 1024px)");
+    const mqPointerFine = window.matchMedia("(pointer: fine)");
+    const evaluate = () => {
+      const useThreeHome = mqDesktop.matches && mqPointerFine.matches;
+      setIsHeroHome(!useThreeHome);
+    };
+    if (mqDesktop.addEventListener) {
+      mqDesktop.addEventListener("change", evaluate);
+      mqPointerFine.addEventListener("change", evaluate);
+    } else {
+      mqDesktop.addListener(evaluate);
+      mqPointerFine.addListener(evaluate);
+    }
+    evaluate();
+    return () => {
+      if (mqDesktop.removeEventListener) {
+        mqDesktop.removeEventListener("change", evaluate);
+        mqPointerFine.removeEventListener("change", evaluate);
+      } else {
+        mqDesktop.removeListener(evaluate);
+        mqPointerFine.removeListener(evaluate);
+      }
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -18,14 +47,16 @@ const Menu = () => {
           isBookingPage || isFaqPage || isExplore || isHome
             ? styles.bookingColor
             : ""
-        }`}
+        } ${isHome && isHeroHome ? styles.heroMobilePos : ""}`}
       >
         <div
           className={`${styles.MenuText} ${
             isBookingPage || isFaqPage || isExplore || isHome
               ? styles.bookingText
               : ""
-          } ${isOpen ? styles.hidden : ""}`}
+          } ${isOpen ? styles.hidden : ""} ${
+            isHome && isHeroHome ? styles.heroMobileHideText : ""
+          }`}
         >
           MENU
         </div>
@@ -34,7 +65,11 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            isOpen || isBookingPage || isFaqPage || isExplore || isHome
+            isHome && isHeroHome
+              ? isOpen
+                ? "#1c5666"
+                : "#FFFFFF"
+              : isOpen || isBookingPage || isFaqPage || isExplore || isHome
               ? "#1c5666"
               : "#FFFFFF"
           }
@@ -48,7 +83,12 @@ const Menu = () => {
         }`}
       >
         {/* CLOSE BUTTON */}
-        <div className={styles.closeButton} onClick={() => setOpen(false)}>
+        <div
+          className={`${styles.closeButton} ${
+            isHome && isHeroHome ? styles.heroMobileHideText : ""
+          }`}
+          onClick={() => setOpen(false)}
+        >
           <span className={styles.closeText}>CLOSE</span>
         </div>
         <div className={styles.linkContainer}>

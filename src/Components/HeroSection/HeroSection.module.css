@@ -8,6 +8,13 @@
   font-family: "Playfair Display", serif;
 }
 
+.heroLogo {
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  z-index: 5;
+}
+
 .cards {
   display: grid;
   grid-auto-flow: column;
@@ -81,16 +88,56 @@
 }
 
 @media (max-width: 768px) {
+  .heroLogo {
+    top: 10px;
+    left: 0px;
+  }
+  .heroLogo img {
+    width: 88px;
+  }
   .cards {
-    grid-auto-flow: row;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    width: 100%;
+    padding: 12px;
   }
   .card {
-    width: min(90vw, 560px);
-    height: clamp(260px, 48vh, 480px);
+    width: 315px;
+    max-width: 315px;
+    margin: 0 auto;
+    height: 150px;
+  }
+  .card:hover {
+    transform: none;
+    width: 100%;
   }
   .textOverlay {
-    left: 6%;
-    bottom: 8%;
+    left: 0;
+    bottom: 12%;
+    top: auto;
+    transform: none;
+    font-size: clamp(1.1rem, 4.5vw, 1.8rem);
+    opacity: 1; /* always visible on small screens */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+
+  .textOverlay::before {
+    content: "";
+    display: inline-block;
+    width: 56px;
+    height: 2px;
+    background: #ffffff;
+    margin-left: 0;
+  }
+
+  .textOverlay h1 {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Playfair Display", serif;
   }
 }

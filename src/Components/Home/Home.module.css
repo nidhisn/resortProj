@@ -292,52 +292,21 @@ h2.subheroIntro {
 }
 
 .galleryButton {
-  padding: 8px 20px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #1c5666 0%, #2d7a8a 100%);
-  color: #ffffff;
-
-  border-radius: 50px;
+  font-family: "Nunito Sans", sans-serif !important;
+  background-color: #1c5666;
   cursor: pointer;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: "Gabarito", sans-serif;
-
-  position: relative;
-  overflow: hidden;
-}
-
-.galleryButton::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-
-  transition: left 0.5s;
-}
-
-.galleryButton:hover {
-  background: linear-gradient(135deg, #2d7a8a 0%, #3a8fa0 100%);
-
-  box-shadow: 0 12px 40px rgba(28, 86, 102, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-3px);
-  color: #ffffff;
-}
-
-.galleryButton:hover::before {
-  left: 100%;
-}
-
-.galleryButton:active {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(28, 86, 102, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-size: clamp(0.7rem, 1.2vw, 1rem) !important;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+  color: white;
+  line-height: 28px;
+  text-decoration: none;
+  transition: 0.3s;
+  padding: clamp(6px, 1.2vw, 12px) clamp(16px, 2.5vw, 28px);
+  border: 2px solid transparent;
+  border-radius: 2px;
+  display: inline-block; /* This is important */
+  text-align: center;
 }
 
 /* Scroll-triggered horizontal movement keyframes */

@@ -10,6 +10,14 @@
   gap: 1px;
 }
 
+/* Special positioning when on HeroSection mobile home */
+.heroMobilePos {
+  top: 12px;
+  right: 12px;
+  left: auto;
+  transform: none;
+}
+
 .MenuText {
   color: white;
   writing-mode: vertical-rl;
@@ -120,6 +128,11 @@
   display: none;
 }
 
+/* Hide menu label and close text only on HeroSection mobile */
+.heroMobileHideText {
+  display: none !important;
+}
+
 /* ===========================
    Responsive
    =========================== */
@@ -138,9 +151,25 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .heroMobilePos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+}
+
 @media (max-width: 992px) {
   .hamburgerWrapper {
     left: 16px;
+  }
+  /* Ensure top-right on HeroSection tablets */
+  .hamburgerWrapper.heroMobilePos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
   }
   .MenuText {
     font-size: 0.7rem;
@@ -166,6 +195,12 @@
 @media (max-width: 768px) {
   .hamburgerWrapper {
     left: 12px;
+  }
+  .heroMobilePos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
   }
   .MenuText {
     font-size: 0.65rem;

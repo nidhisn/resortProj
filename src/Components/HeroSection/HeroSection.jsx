@@ -3,7 +3,8 @@ import styles from "./HeroSection.module.css";
 import resortImg from "../../images/TheResort.jpg";
 import scubaImg from "../../images/scuba.jpg";
 import islandImg from "../../images/island.jpg";
-import sandBg from "../../images/skyy.jpg";
+import sandBg from "../../images/bgHome6.jpg";
+import Logo from "../Logo/Logo";
 
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +39,9 @@ export default function HeroSection() {
         backgroundRepeat: "no-repeat",
       }}
     >
+      <div className={styles.heroLogo}>
+        <Logo />
+      </div>
       <div className={styles.cards}>
         {images.map((img, index) => (
           <div key={index} className={styles.card} onClick={img.onClick}>
