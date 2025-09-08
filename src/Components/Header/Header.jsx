@@ -14,6 +14,19 @@ export default function Header() {
   const isResort = location.pathname === "/resort";
 
   const [isHeaderVisible, setIsHeaderVisible] = useState(!isHome);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mq.matches);
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isHome) {
@@ -21,10 +34,15 @@ export default function Header() {
       return;
     }
 
+    // On small screens, keep header hidden on Home regardless of scroll
+    if (isMobile) {
+      setIsHeaderVisible(false);
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       if (scrollPosition > 100) {
-        // Show header after 100px scroll
         setIsHeaderVisible(true);
       } else {
         setIsHeaderVisible(false);
@@ -33,7 +51,7 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, [isHome, isMobile]);
 
   return (
     <header
