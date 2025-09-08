@@ -62,7 +62,7 @@
 }
 
 h3 {
-  color: #f5625d;
+  color: #1c5666;
   letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -148,6 +148,16 @@ select {
 }
 
 @media (max-width: 768px) {
+  /* Make header image taller and cover on mobile */
+  .header {
+    height: 300px;
+    overflow: hidden;
+  }
+  .header img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
   .contentWrapper {
     padding: 1rem;
   }

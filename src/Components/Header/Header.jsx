@@ -77,7 +77,7 @@ export default function Header() {
             className={`${styles.bookButton} ${
               isFaqPage || isHome || isGallery ? styles.bookButtonGreen : ""
             } ${
-              isResort || isThingsToDo || isExplore || isGallery
+              isResort || isThingsToDo || isExplore || isGallery || isFaqPage
                 ? styles.hideOnMobile
                 : ""
             }`}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Book.module.css";
 import header from "../../images/header.jpg";
 import TextField from "@mui/material/TextField";
@@ -96,7 +97,7 @@ export default function Book() {
               <p>
                 <span className={styles.warningText}></span> If you have any
                 questions about the stay, don't hesitate to{" "}
-                <a href="/faq">consult the FAQ</a>.
+                <Link to="/faqs">consult the FAQ</Link>.
               </p>
             </div>
           </div>
@@ -139,7 +140,7 @@ export default function Book() {
 
               <p className={styles.infoText}>
                 For more information about the stay, please visit{" "}
-                <a href="/resort">THE SANDBANK RESORT</a>
+                <Link to="/resort">THE SANDBANK RESORT</Link>
               </p>
 
               <div className={styles.formGroup}>

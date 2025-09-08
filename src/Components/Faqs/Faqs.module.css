@@ -127,7 +127,7 @@
     padding: 0 1rem;
   }
   .pageTitle h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
   .faqSection {
     padding: 0 1rem;
@@ -138,6 +138,9 @@
   }
   .faqLine {
     width: 56px;
+  }
+  .groupTitle {
+    font-size: 1.4rem;
   }
   .question {
     font-size: 1.25rem;
@@ -155,7 +158,10 @@
 
 @media (max-width: 420px) {
   .pageTitle h1 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
+  }
+  .groupTitle {
+    font-size: 1.25rem;
   }
   .question {
     font-size: 1.1rem;

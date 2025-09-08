@@ -20,6 +20,10 @@
 
 /* Gallery page: top-right only on mobile/tablet (no override on desktop) */
 
+/* FAQ page: position hamburger top-right on mobile */
+
+/* Booking page: position hamburger top-right on mobile */
+
 .MenuText {
   color: white;
   writing-mode: vertical-rl;
@@ -166,6 +170,18 @@
     left: auto;
     transform: none;
   }
+  .faqPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  .bookingPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
 }
 
 @media (max-width: 992px) {
@@ -180,6 +196,18 @@
     transform: none;
   }
   .galleryPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  .faqPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  .bookingPos {
     top: 12px;
     right: 12px;
     left: auto;
@@ -222,8 +250,28 @@
     left: auto;
     transform: none;
   }
+  .faqPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
+  .bookingPos {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+  }
   /* Hide the vertical MENU label on Gallery for small screens */
   .galleryPos .MenuText {
+    display: none !important;
+  }
+  /* Hide the vertical MENU label on FAQ for small screens */
+  .faqPos .MenuText {
+    display: none !important;
+  }
+  /* Hide the vertical MENU label on Booking for small screens */
+  .bookingPos .MenuText {
     display: none !important;
   }
   .MenuText {

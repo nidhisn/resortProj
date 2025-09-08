@@ -57,7 +57,9 @@ const Menu = () => {
           (isExplore && isHeroHome)
             ? styles.heroMobilePos
             : ""
-        } ${isGallery ? styles.galleryPos : ""}`}
+        } ${isGallery ? styles.galleryPos : ""} ${
+          isFaqPage ? styles.faqPos : ""
+        } ${isBookingPage ? styles.bookingPos : ""}`}
       >
         <div
           className={`${styles.MenuText} ${
@@ -80,7 +82,9 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            isGallery
+            isBookingPage
+              ? "#FFFFFF"
+              : isGallery
               ? "#1c5666"
               : (isHome && isHeroHome) ||
                 (isResort && isHeroHome) ||
@@ -89,7 +93,7 @@ const Menu = () => {
               ? isOpen
                 ? "#1c5666"
                 : "#FFFFFF"
-              : isOpen || isBookingPage || isFaqPage || isExplore || isHome
+              : isOpen || isFaqPage || isExplore || isHome
               ? "#1c5666"
               : "#FFFFFF"
           }
