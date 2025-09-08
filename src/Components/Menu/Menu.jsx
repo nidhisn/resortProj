@@ -132,6 +132,13 @@ const Menu = () => {
           >
             Explore the Island
           </Link>
+          <Link
+            to="/gallery"
+            className={styles.link}
+            onClick={() => setOpen(false)}
+          >
+            Gallery
+          </Link>
           <div className={styles.linkContainerSecondary}>
             <Link
               to="/faqs"

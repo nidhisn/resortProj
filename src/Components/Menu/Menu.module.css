@@ -219,8 +219,8 @@
     text-align: right;
   }
   .link {
-    font-size: 1.65rem;
-    line-height: 36px;
+    font-size: 2.1rem;
+    line-height: 44px;
     margin: 1rem 0;
   }
   .linkContainerSecondary {
@@ -229,7 +229,7 @@
     text-align: right;
   }
   .subLink {
-    font-size: 1rem;
+    font-size: 1.25rem;
     text-align: right;
   }
 }
@@ -245,8 +245,8 @@
     bottom: 1rem;
   }
   .link {
-    font-size: 1.35rem;
-    line-height: 30px;
+    font-size: 1.8rem;
+    line-height: 38px;
     margin: 0.75rem 0;
     text-align: right;
   }
@@ -254,8 +254,8 @@
     align-items: flex-end;
   }
   .subLink {
-    font-size: 0.9rem;
-    line-height: 1.1rem;
+    font-size: 1.15rem;
+    line-height: 1.35rem;
     text-align: right;
   }
 }
