@@ -11,6 +11,7 @@ const Menu = () => {
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
   const isResort = location.pathname === "/resort";
+  const isThings = location.pathname === "/thingstodo";
 
   // Detect when HeroSection is the active home (mobile/tablet with no fine pointer)
   const [isHeroHome, setIsHeroHome] = useState(false);
@@ -49,7 +50,10 @@ const Menu = () => {
             ? styles.bookingColor
             : ""
         } ${
-          (isHome && isHeroHome) || (isResort && isHeroHome)
+          (isHome && isHeroHome) ||
+          (isResort && isHeroHome) ||
+          (isThings && isHeroHome) ||
+          (isExplore && isHeroHome)
             ? styles.heroMobilePos
             : ""
         }`}
@@ -60,7 +64,10 @@ const Menu = () => {
               ? styles.bookingText
               : ""
           } ${isOpen ? styles.hidden : ""} ${
-            (isHome && isHeroHome) || (isResort && isHeroHome)
+            (isHome && isHeroHome) ||
+            (isResort && isHeroHome) ||
+            (isThings && isHeroHome) ||
+            (isExplore && isHeroHome)
               ? styles.heroMobileHideText
               : ""
           }`}
@@ -72,7 +79,10 @@ const Menu = () => {
           toggled={isOpen}
           toggle={setOpen}
           color={
-            (isHome && isHeroHome) || (isResort && isHeroHome)
+            (isHome && isHeroHome) ||
+            (isResort && isHeroHome) ||
+            (isThings && isHeroHome) ||
+            (isExplore && isHeroHome)
               ? isOpen
                 ? "#1c5666"
                 : "#FFFFFF"

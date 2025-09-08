@@ -308,6 +308,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Make header image taller and cover on mobile */
+  .header img {
+    height: 320px;
+    object-fit: cover;
+  }
   .contentWrapper {
     padding: 1.5rem 1rem;
     margin: 1rem;
@@ -332,6 +337,8 @@
       rgba(28, 86, 102, 0.95) 0%,
       rgba(28, 86, 102, 0.9) 100%
     );
+    align-self: flex-start; /* stick to left on mobile */
+    margin-left: 1rem;
   }
   .tabs {
     gap: 1.5rem;
@@ -343,6 +350,10 @@
 }
 
 @media (max-width: 420px) {
+  .header img {
+    height: 280px;
+    object-fit: cover;
+  }
   .contentWrapper {
     padding: 1rem;
     margin: 0.5rem;

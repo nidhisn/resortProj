@@ -11,6 +11,7 @@ export default function Header() {
   const isExplore = location.pathname === "/exploretheisland";
   const isHome = location.pathname === "/";
   const isGallery = location.pathname === "/gallery";
+  const isResort = location.pathname === "/resort";
 
   const [isHeaderVisible, setIsHeaderVisible] = useState(!isHome);
 
@@ -57,7 +58,9 @@ export default function Header() {
             to="/booking"
             className={`${styles.bookButton} ${
               isFaqPage || isHome || isGallery ? styles.bookButtonGreen : ""
-            } ${location.pathname === "/resort" ? styles.hideOnMobile : ""}`}
+            } ${
+              isResort || isThingsToDo || isExplore ? styles.hideOnMobile : ""
+            }`}
           >
             BOOK MY STAY
           </Link>
